@@ -1,0 +1,325 @@
+---
+title: "Sample: `r basename(qc.path)`"
+subtitle: "Quality control of reads"
+output: 
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: 
+      collapsed: false
+---
+   
+   
+```{r, echo = FALSE}
+#Knitr settings
+knitr::opts_chunk$set(
+  warning=FALSE, message=FALSE, echo=TRUE, tidy=FALSE, error=FALSE,
+  fig.show='hold', fig.width=3.5, fig.height = 3.5
+)
+options(width=150)
+```
+     
+     
+<style>
+.error,.notice,.warning,.success,.question{height:auto;padding:10px 10px 10px 40px;margin:5px auto 15px;line-height:20px;border:1px solid #FFF;border-radius:4px;position:relative;display:block;text-align:left}.question{background-color:#DAEEF8;border-color:#BDE9F2}.notice{background-color:#F0F0F0;border-color:#E2E2E2}.warning{background-color:#FDF9E4;border-color:#FBECCD}.error{background-color:#F3DFDF;border-color:#ECCDD2}.success{background-color:#E0F1D9;border-color:#D7EAC7}.block,.medium-block,.small-block{border:1px solid #CCC;border-top:2px solid #366393;border-bottom:1px solid #99B1CB;background:#F2F8FF;padding:10px}.block{width:auto;margin-top:10px;margin-bottom:10px}img{background-color:#fff;background-color:#FFF;border-radius:3px;border:1px solid #CCC;box-shadow:2px 2px 12px -5px #999;margin:0 5px;margin-bottom:5px;padding:5px;text-align:center}
+</style>
+     
+     
+   
+```{r, echo = FALSE}
+if(is.null(experiment)) experiment <- "Sequencing data"
+```
+    
+- **Date:** `r Sys.Date()`
+- **Sample path:** `r qc.path`
+- **R packages:** Report generated with the R package fastqcr version `r packageDescription("fastqcr")$Version`
+- **Experiment description:** `r experiment`
+     
+   
+   
+## Required R packages
+     
+```{r, echo = TRUE}
+library(fastqcr)
+library(dplyr)
+```
+    
+     
+     
+## Reading the file
+     
+     
+```{r}
+# Read all modules
+qc <- qc_read(qc.path)
+# Elements contained in the qc object
+names(qc)
+```
+   
+   
+## Plotting and Interpreting
+   
+   
+### Summary
+   
+**Summary** shows a summary of the modules which were tested, and the status of the test resuls: 
+      
+- normal results (PASS),
+- slightly abnormal (WARN: warning)
+- or very unusual (FAIL: failure). 
+       
+Some experiments may be expected to produce libraries which are biased in particular ways. You should treat the summary evaluations therefore as pointers to where you should concentrate your attention and understand why your library may not look normal. 
+   
+   
+```{r summary, fig.width=5, fig.height=4.5, fig.align='center'}
+qc_plot(qc, "summary")
+```
+    
+    
+### Basic Statistics
+     
+**Basic statistics** shows basic data metrics such as:
+   
+- Total sequences: the number of reads (total sequences), 
+- Sequence length: the length of reads (minimum - maximum)
+- %GC: GC content
+   
+```{r basic-statistics, fig.width=5, fig.height=3, fig.align='center'}
+qc_plot(qc, "Basic statistics")
+```
+    
+
+    
+### Per base sequence quality
+     
+- **Per base sequence quality** plot depicts the quality scores across all bases at each position in the reads. The background color delimits 3 different zones: very good quality (green), reasonable quality (orange) and poor quality (red). A good sample will have qualities all above 28:
+   
+```{r per-base-sequence-quality, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per base sequence quality")
+```
+    
+Problems:
+   
+```{block, type = "warning"}
+- **warning** if the median for any base is less than 25. 
+- **failure** if the median for any base is less than 20. 
+```
+     
+     
+Common reasons for problems:
+
+```{block, type = "block"}
+- Degradation of (sequencing chemestry) quality over the duration of long runs. Remedy: Quality trimming.
+  
+- Short loss of quality earlier in the run, which then recovers to produce later good quality sequence. Can be explained by a transient problem with the run (bubbles in the flowcell for example). In these cases trimming is not advisable as it will remove later good sequence, but you might want to consider masking bases during subsequent mapping or assembly. 
+   
+- Library with reads of varying length. Warning or error is generated because of very low coverage for a given base range. Before committing to any action, check how many sequences were responsible for triggering an error by looking at the sequence length distribution module results. 
+```
+   
+   
+### Per sequence quality scores
+    
+- **Per sequence quality scores** plot shows the frequencies of quality scores in a sample. It allows you to see if a subset of your sequences have low quality values. If the reads are of good quality, the peak on the plot should be shifted to the right as far as possible (quality > 27). 
+ 
+```{r per-sequence-quality-scores, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per sequence quality scores")
+```
+     
+    
+Problems:
+   
+```{block, type = "warning"}
+- **warning** if the most frequently observed mean quality is below 27 - this equates to a 0.2% error rate. 
+- **failure** if the most frequently observed mean quality is below 20 - this equates to a 1% error rate.
+```
+   
+     
+Common reasons for problems:
+
+```{block, type = "block"}
+General loss of quality within a run. Remedy: For long runs this may be alleviated through quality trimming.
+```
+
+     
+### Per base sequence content
+     
+- **Per base sequence content** shows the four nucleotides’ proportions for each position. In a random library you expect no nucleotide bias and the lines should be almost parallel with each other. In a good sequence composition, the difference between A and T, or G and C is < 10% in any position.
+    
+
+```{r per-base-sequence-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per base sequence content")
+```
+     
+     
+```{block, type = "notice"}
+It's worth noting that some types of library will always produce biased sequence composition, normally at the start of the read. For example, in RNA-Seq data, it is common to have bias at the beginning of the reads. This occurs during RNA-Seq library preparation, when "random" primers are annealed to the start of sequences. These primers are not truly random, and it leads to a variation at the  beginning of the reads.  We can remove these primers using a trim adaptors tool.
+```
+     
+     
+Problems:
+     
+```{block, type = "warning"}
+- **warning** if the difference between A and T, or G and C is greater than 10% in any position.  
+- **failure** if the difference between A and T, or G and C is greater than 20% in any position.
+```
+     
+     
+Common reasons for problems:
+
+```{block, type = "block"}
+- Overrepresented sequences: adapter dimers or rRNA 
+    
+- Biased selection of random primers for RNA-seq. Nearly all RNA-Seq libraries will fail this module because of this bias, but this is not a problem which can be fixed by processing, and it doesn't seem to adversely affect the ablity to measure expression. 
+   
+- Biased composition libraries: Some libraries are inherently biased in their sequence composition. For example, library treated with sodium bisulphite, which will then converted most of the cytosines to thymines, meaning that the base composition will be almost devoid of cytosines and will thus trigger an error, despite this being entirely normal for that type of library.
+   
+- Library which has been aggressivley adapter trimmed. 
+```
+   
+     
+### Per sequence GC content
+     
+- **Per sequence GC content** plot displays GC distribution over all sequences. In a random library you expect a roughly normal GC content distribution. An unusually sharped or shifted distribution could indicate a contamination or some systematic biase:
+    
+    
+```{r per-sequence-GC-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per sequence GC content")
+```
+     
+
+```{block, type = "success"}
+You can generate the theoretical GC content curves files using an R package called [fastqcTheoreticalGC](https://github.com/mikelove/fastqcTheoreticalGC) written by Mike Love. 
+```
+
+     
+### Per base N content
+     
+- **Per base N content**. If a sequencer is unable to make a base call with sufficient confidence then it will normally substitute an N rather than a conventional base call. This module plots out the percentage of base calls at each position for which an N was called. 
+    
+    
+```{r per-base-N-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per base N content")
+```
+    
+    
+    
+Problems:
+     
+```{block, type = "warning"}
+- **warning** if any position shows an N content of >5%. 
+- **failure** if any position shows an N content of >20%.
+```
+     
+     
+Common reasons for problems:
+
+```{block, type = "block"}
+- General loss of quality.
+- Very biased sequence composition in the library.
+```
+     
+     
+### Sequence length distribution
+    
+- **Sequence length distribution** module reports if all sequences have the same length or not. For some sequencing platforms it is entirely normal to have different read lengths so warnings here can be ignored. In many cases this will produce a simple graph showing a peak only at one size. This module will raise an error if any of the sequences have zero length. 
+    
+    
+```{r sequence-length-distribution, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Sequence length distribution")
+```
+   
+     
+### Sequence duplication levels
+    
+- **Sequence duplication levels**. This module counts the degree of duplication for every sequence in a library and creates a plot showing the relative number of sequences with different degrees of duplication. A high level of duplication is more likely to indicate some kind of enrichment bias (eg PCR over amplification). 
+     
+
+```{r sequence-duplication-levels, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Sequence duplication levels")
+```
+     
+     
+Problems:
+     
+```{block, type = "warning"}
+- **warning** if non-unique sequences make up more than 20% of the total. 
+- **failure** if non-unique sequences make up more than 50% of the total. 
+```
+    
+    
+Common reasons for problems:
+
+```{block, type = "block"}
+- Technical duplicates arising from PCR artefacts
+   
+- Biological duplicates which are natural collisions where different copies of exactly the same sequence are randomly selected.
+   
+In RNA-seq data, duplication levels can reach even 40%. Nevertheless, while analysing transcriptome sequencing data, we should not remove these duplicates because we do not know whether they represent PCR duplicates or high gene expression of our samples.
+```
+   
+   
+### Overrepresented sequences
+    
+- **Overrepresented sequences** section gives information about primer or adaptor contaminations. Finding that a single sequence is very overrepresented in the set either means that it is highly biologically significant, or indicates that the library is contaminated, or not as diverse as you expected. This module lists all of the sequence which make up more than 0.1% of the total. 
+   
+   
+
+```{r Overrepresented-sequences, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Overrepresented sequences")
+```
+   
+    
+Problems:
+     
+```{block, type = "warning"}
+- **warning** if any sequence is found to represent more than 0.1% of the total. 
+- **failure** if any sequence is found to represent more than 1% of the total. 
+```
+   
+   
+Common reasons for problems:
+     
+     
+```{block, type = "block"}
+small RNA libraries where sequences are not subjected to random fragmentation, and the same sequence may natrually be present in a significant proportion of the library. 
+```
+   
+   
+### Adapter content
+   
+- **Adapter content** module checks the presence of read-through adapter sequences. It is useful to know if your library contains a significant amount of adapter in order to be able to assess whether you need to adapter trim or not. 
+     
+     
+
+```{r adapter-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Adapter content")
+```
+   
+   
+Problems:
+     
+```{block, type = "warning"}
+- **warning** if any sequence is present in more than 5% of all reads.
+- **failure** if any sequence is present in more than 10% of all reads.  
+```
+    
+    
+```{block, type = "block"}
+A warning or failure means that the sequences will need to be adapter trimmed before proceeding with any downstream analysis. 
+```
+
+     
+### Kmer content
+
+   
+```{r kmer-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Kmer content")
+```
+   
+        
+## Useful Links
+   
+- FastQC report for a [good Illumina dataset](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html)
+- FastQC report for a [bad Illumina dataset](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
+- [Online documentation for each FastQC report](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/)
+     

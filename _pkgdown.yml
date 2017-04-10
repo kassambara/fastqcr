@@ -1,0 +1,39 @@
+templates:
+  params:
+    bootswatch: flatly
+
+reference:
+  - title: Aggregating and Analyzing FastQC Outputs
+    desc:  Aggregating and Analyzing FastQC Outputs.
+    contents:
+      - fastqc_install
+      - fastqc
+      - qc_aggregate
+      - qc_problems
+      - qc_report
+      - qc_read
+      - qc_plot
+      - qc_unzip
+      
+
+navbar:
+  title: "fastqcr"
+  left:
+  - text: Reference
+    href: reference/index.html
+  - text: QC Reports
+    menu:
+      - text: Multi-QC Reports
+        href: qc-reports/fastqcr-multi-qc-report.html
+      - text: One-Sample Report (+Interpretation)
+        href: qc-reports/sample-qc-report-interpretation.html
+      - text: One-Sample Report (no interpretation)
+        href: qc-reports/sample-qc-report-without-interpretation.html
+  - text: News
+    href: news/index.html
+  right:
+    - icon: fa-github
+      href: https://github.com/kassambara/fastqcr
+
+
+

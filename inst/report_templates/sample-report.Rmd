@@ -1,0 +1,176 @@
+---
+title: "Sample: `r basename(qc.path)`"
+subtitle: "Quality Control of Reads"
+output: 
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: 
+      collapsed: false
+---
+   
+   
+```{r, echo = FALSE}
+#Knitr settings
+knitr::opts_chunk$set(
+  warning=FALSE, message=FALSE, echo=TRUE, tidy=FALSE, error=FALSE,
+  fig.show='hold', fig.width=3.5, fig.height = 3.5
+)
+options(width=150)
+```
+     
+     
+<style>
+.error,.notice,.warning,.success,.question{height:auto;padding:10px 10px 10px 40px;margin:5px auto 15px;line-height:20px;border:1px solid #FFF;border-radius:4px;position:relative;display:block;text-align:left}.question{background-color:#DAEEF8;border-color:#BDE9F2}.notice{background-color:#F0F0F0;border-color:#E2E2E2}.warning{background-color:#FDF9E4;border-color:#FBECCD}.error{background-color:#F3DFDF;border-color:#ECCDD2}.success{background-color:#E0F1D9;border-color:#D7EAC7}.block,.medium-block,.small-block{border:1px solid #CCC;border-top:2px solid #366393;border-bottom:1px solid #99B1CB;background:#F2F8FF;padding:10px}.block{width:auto;margin-top:10px;margin-bottom:10px}img{background-color:#fff;background-color:#FFF;border-radius:3px;border:1px solid #CCC;box-shadow:2px 2px 12px -5px #999;margin:0 5px;margin-bottom:5px;padding:5px;text-align:center}
+</style>
+     
+  
+   
+```{r, echo = FALSE}
+if(is.null(experiment)) experiment <- "Sequencing data"
+```
+    
+- **Date:** `r Sys.Date()`
+- **Sample path:** `r qc.path`
+- **R packages:** Report generated with the R package fastqcr version `r packageDescription("fastqcr")$Version`
+- **Experiment description:** `r experiment`
+     
+   
+   
+## Required R packages
+     
+```{r, echo = TRUE}
+library(fastqcr)
+library(dplyr)
+```
+    
+     
+     
+## Reading the file
+     
+     
+```{r}
+# Read all modules
+qc <- qc_read(qc.path)
+# Elements contained in the qc object
+names(qc)
+```
+   
+   
+## Plotting and Interpreting
+   
+   
+### Summary
+   
+**Summary** shows a summary of the modules which were tested, and the status of the test resuls: 
+      
+- normal results (PASS),
+- slightly abnormal (WARN: warning)
+- or very unusual (FAIL: failure). 
+       
+Some experiments may be expected to produce libraries which are biased in particular ways. You should treat the summary evaluations therefore as pointers to where you should concentrate your attention and understand why your library may not look normal. 
+   
+   
+```{r summary, fig.width=5, fig.height=4.5, fig.align='center'}
+qc_plot(qc, "summary")
+```
+    
+    
+### Basic Statistics
+     
+**Basic statistics** shows basic data metrics such as:
+   
+- Total sequences: the number of reads (total sequences), 
+- Sequence length: the length of reads (minimum - maximum)
+- %GC: GC content
+   
+```{r basic-statistics, fig.width=5, fig.height=3, fig.align='center'}
+qc_plot(qc, "Basic statistics")
+```
+    
+
+    
+### Per base sequence quality
+ 
+```{r per-base-sequence-quality, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per base sequence quality")
+```
+   
+   
+### Per sequence quality scores
+    
+```{r per-sequence-quality-scores, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per sequence quality scores")
+```
+    
+     
+### Per base sequence content
+ 
+```{r per-base-sequence-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per base sequence content")
+```
+     
+     
+    
+### Per sequence GC content
+    
+    
+```{r per-sequence-GC-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per sequence GC content")
+```
+    
+    
+### Per base N content
+   
+    
+```{r per-base-N-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Per base N content")
+```
+    
+     
+### Sequence length distribution
+    
+    
+```{r sequence-length-distribution, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Sequence length distribution")
+```
+   
+     
+### Sequence duplication levels
+   
+
+```{r sequence-duplication-levels, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Sequence duplication levels")
+```
+     
+     
+### Overrepresented sequences
+    
+
+```{r Overrepresented-sequences, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Overrepresented sequences")
+```
+  
+   
+### Adapter content
+   
+
+```{r adapter-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Adapter content")
+```
+   
+     
+### Kmer content
+
+   
+```{r kmer-content, fig.width=4, fig.height=3.5, fig.align='center'}
+qc_plot(qc, "Kmer content")
+```
+   
+        
+## Useful Links
+   
+- FastQC report for a [good Illumina dataset](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html)
+- FastQC report for a [bad Illumina dataset](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
+- [Online documentation for each FastQC report](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/)
+     
