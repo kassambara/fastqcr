@@ -7,9 +7,9 @@ Authors@R: c(
     person("Alboukadel", "Kassambara", role = c("aut", "cre"), email = "alboukadel.kassambara@gmail.com")
     )
 Description: 'FASTQC' is the most widely used sequence quality assessment tool 
-    for evaluating the raw reads in fastq files from high throughput sequencing data.  
+    for evaluating the raw reads in 'fastq' files from high throughput sequencing data.  
     It produces, for each sample, an html report and a 'zip' file containing the raw data. 
-    If you have hundreds of samples, you’re not going to open up each HTML page. 
+    If you have hundreds of samples, you are not going to open up each 'HTML' page. 
     You need some way of looking at these data in aggregate. 
     'fastqcr' Provides helper functions to easily parse, aggregate and analyze 
     'FastQC' reports for large numbers of samples. It provides a convenient solution for building 
