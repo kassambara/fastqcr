@@ -4,7 +4,7 @@ NULL
 #' @description Install the FastQC Tool. To be used only on Unix system.
 #' @param url url to download the latest version. If missing, the function will
 #'   try to install the latest version from
-#'   http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc.
+#'   \link{http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc}{http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc}.
 #' @param dest.dir destination directory to install the tool.
 #' @export
 fastqc_install <- function(url, dest.dir = "~/bin"){
