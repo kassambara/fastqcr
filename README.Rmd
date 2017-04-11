@@ -76,7 +76,7 @@ library("fastqcr")
 ## Main functions
    
    
-**1) Installing and Runing FastQC**
+**1) Installing and Running FastQC**
       
       
 - **fastqc_install**(): Install the latest version of FastQC tool on Unix systems (MAC OSX and Linux)
@@ -85,7 +85,7 @@ library("fastqcr")
      
          
      
-**2) Aggregating and Summarizing Multiple Reports**
+**2) Aggregating and Summarizing Multiple FastQC Reports**
        
        
 - **qc <- qc_aggregate**(): Aggregate multiple FastQC reports into a data frame.
@@ -96,7 +96,7 @@ library("fastqcr")
        
      
     
-**3) Inpecting Problems**
+**3) Inspecting Problems**
       
       
 - **qc_fails**(qc): Displays samples or modules that failed.
@@ -107,7 +107,7 @@ library("fastqcr")
     
         
     
-**4) Importing and Plotting a FastQC Report**
+**4) Importing and Plotting FastQC Reports**
         
 - **qc\_read**(): Read FastQC data into R.
    
@@ -115,13 +115,13 @@ library("fastqcr")
       
           
       
-**5) Building Report**
+**5) Building One-Sample and Multi-QC Reports**
      
 - **qc\_report**(): Create an HTML file containing FastQC reports of one or multiple files. Inputs can be either a directory containing multiple FastQC reports or a single sample FastQC report.
      
           
      
-**6) Other**
+**6) Others**
 
 - **qc\_unzip**(): Unzip all zipped files in the qc.dir directory.
  <br/>
@@ -323,7 +323,7 @@ Column names:
     
       
 ```{block, type = "block"} 
-The table shows, for each sample, some genral statistics such as the total number of reads, the length of reads, the percentage of GC content and the percentage of duplicate reads
+The table shows, for each sample, some general statistics such as the total number of reads, the length of reads, the percentage of GC content and the percentage of duplicate reads
 ```
    
    
@@ -343,7 +343,7 @@ Once you’ve got this aggregated data, it’s easy to figure out what (if anyth
 2) **Input data**: aggregated data from **qc_aggregate**()
      
      
-3) **Output data**: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a streched format, specify the argument *compact = FALSE*.
+3) **Output data**: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a stretched format, specify the argument *compact = FALSE*.
    
 The format and the interpretation of the outputs depend on the additional argument *element*, which value is one of c("sample", "module").
    
@@ -392,7 +392,7 @@ qc_problems(qc, "module")
 ```
      
      
-The output above is in a compact format. For a streched format, type this:   
+The output above is in a compact format. For a stretched format, type this:   
     
     
 ```{r}
@@ -400,7 +400,7 @@ qc_problems(qc, "module", compact = FALSE)
 ```
     
 ```{block, type = "success"}
-In the the streched format each row correspond to a unique sample. Additionally, the status of each module is specified.
+In the the stretched format each row correspond to a unique sample. Additionally, the status of each module is specified.
 ```
 
      

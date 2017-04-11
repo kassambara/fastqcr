@@ -43,13 +43,13 @@ library("fastqcr")
 Main functions
 --------------
 
-**1) Installing and Runing FastQC**
+**1) Installing and Running FastQC**
 
 -   **fastqc\_install**(): Install the latest version of FastQC tool on Unix systems (MAC OSX and Linux)
 
 -   **fastqc**(): Run the FastQC tool from R.
 
-**2) Aggregating and Summarizing Multiple Reports**
+**2) Aggregating and Summarizing Multiple FastQC Reports**
 
 -   **qc &lt;- qc\_aggregate**(): Aggregate multiple FastQC reports into a data frame.
 
@@ -57,7 +57,7 @@ Main functions
 
 -   **qc\_stats**(qc): General statistics of FastQC reports.
 
-**3) Inpecting Problems**
+**3) Inspecting Problems**
 
 -   **qc\_fails**(qc): Displays samples or modules that failed.
 
@@ -65,17 +65,17 @@ Main functions
 
 -   **qc\_problems**(qc): Union of **qc\_fails**() and **qc\_warns**(). Display which samples or modules that failed or warned.
 
-**4) Importing and Plotting a FastQC Report**
+**4) Importing and Plotting FastQC Reports**
 
 -   **qc\_read**(): Read FastQC data into R.
 
 -   **qc\_plot**(qc): Plot FastQC data
 
-**5) Building Report**
+**5) Building One-Sample and Multi-QC Reports**
 
 -   **qc\_report**(): Create an HTML file containing FastQC reports of one or multiple files. Inputs can be either a directory containing multiple FastQC reports or a single sample FastQC report.
 
-**6) Other**
+**6) Others**
 
 -   **qc\_unzip**(): Unzip all zipped files in the qc.dir directory. <br/>
 
@@ -147,12 +147,11 @@ library(fastqcr)
 # Demo QC dir
 qc.dir <- system.file("fastqc_results", package = "fastqcr")
 qc.dir
-# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"
+# [1] ""
    
 # List of files in the directory
 list.files(qc.dir)
-# [1] "S1_fastqc.zip" "S2_fastqc.zip" "S3_fastqc.zip" "S4_fastqc.zip"
-# [5] "S5_fastqc.zip"
+# character(0)
 ```
 
 The demo QC directory contains five zipped folders corresponding to the FastQC output for 5 samples.
@@ -168,16 +167,16 @@ The aggregated report looks like this:
 
 | sample | module                       | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
 |:-------|:-----------------------------|:-------|:---------|:-----------|-------:|--------:|
-| S1     | Per sequence quality scores  | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S3     | Sequence Duplication Levels  | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S2     | Per base N content           | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S5     | Sequence Length Distribution | WARN   | 65011962 | 35-76      |      48|    18.15|
-| S1     | Basic Statistics             | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S2     | Basic Statistics             | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S1     | Per base sequence quality    | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S1     | Kmer Content                 | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S2     | Sequence Duplication Levels  | PASS   | 50299587 | 35-76      |      48|    15.70|
 | S1     | Sequence Length Distribution | WARN   | 50299587 | 35-76      |      48|    17.24|
-| S5     | Adapter Content              | PASS   | 65011962 | 35-76      |      48|    18.15|
-| S2     | Kmer Content                 | PASS   | 50299587 | 35-76      |      48|    15.70|
+| S2     | Per base sequence quality    | PASS   | 50299587 | 35-76      |      48|    15.70|
+| S2     | Per base N content           | PASS   | 50299587 | 35-76      |      48|    15.70|
+| S2     | Adapter Content              | PASS   | 50299587 | 35-76      |      48|    15.70|
+| S5     | Per base N content           | PASS   | 65011962 | 35-76      |      48|    18.15|
+| S1     | Sequence Duplication Levels  | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S2     | Per tile sequence quality    | PASS   | 50299587 | 35-76      |      48|    15.70|
+| S3     | Basic Statistics             | PASS   | 67255341 | 35-76      |      49|    22.14|
 
 Column names:
 
@@ -294,7 +293,7 @@ Column names:
 -   *seq.length*: sequence length or the length of reads.
 
 <p>
-The table shows, for each sample, some genral statistics such as the total number of reads, the length of reads, the percentage of GC content and the percentage of duplicate reads
+The table shows, for each sample, some general statistics such as the total number of reads, the length of reads, the percentage of GC content and the percentage of duplicate reads
 </p>
 
 Inspecting Problems
@@ -310,7 +309,7 @@ Once you’ve got this aggregated data, it’s easy to figure out what (if anyth
 
 1.  **Input data**: aggregated data from **qc\_aggregate**()
 
-2.  **Output data**: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a streched format, specify the argument *compact = FALSE*.
+2.  **Output data**: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a stretched format, specify the argument *compact = FALSE*.
 
 The format and the interpretation of the outputs depend on the additional argument *element*, which value is one of c("sample", "module").
 
@@ -366,7 +365,7 @@ qc_problems(qc, "module")
 # 3 Sequence Length Distribution           5 S1, S2, S3, S4, S5
 ```
 
-The output above is in a compact format. For a streched format, type this:
+The output above is in a compact format. For a stretched format, type this:
 
 ``` r
 qc_problems(qc, "module", compact = FALSE)
@@ -391,7 +390,7 @@ qc_problems(qc, "module", compact = FALSE)
 ```
 
 <p>
-In the the streched format each row correspond to a unique sample. Additionally, the status of each module is specified.
+In the the stretched format each row correspond to a unique sample. Additionally, the status of each module is specified.
 </p>
 
 It's also possible to display problems for one or more specified modules. For example,
@@ -489,7 +488,7 @@ We'll build a multi-qc report for the following demo QC directory:
 # Demo QC Directory
 qc.dir <- system.file("fastqc_results", package = "fastqcr")
 qc.dir
-# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"
+# [1] ""
 ```
 
 ``` r
@@ -509,7 +508,7 @@ We'll build a report for the following demo QC file:
 ``` r
  qc.file <- system.file("fastqc_results", "S1_fastqc.zip", package = "fastqcr")
 qc.file
-# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"
+# [1] ""
 ```
 
 -   **One-Sample QC report with plot interpretations**:
@@ -543,7 +542,7 @@ We'll visualize the output for sample 1:
 # Demo file
 qc.file <- system.file("fastqc_results", "S1_fastqc.zip",  package = "fastqcr")
 qc.file
-# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"
+# [1] ""
 ```
 
 We start by reading the output using the function **qc\_read**(), which returns a list of tibbles containing the data for specified modules:

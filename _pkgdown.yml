@@ -3,16 +3,25 @@ templates:
     bootswatch: flatly
 
 reference:
-  - title: Aggregating and Analyzing FastQC Outputs
-    desc:  Aggregating and Analyzing FastQC Outputs.
+  - title: Installing and Running FastQC Tool
     contents:
       - fastqc_install
       - fastqc
+  - title: Aggregating and Summarizing Multiple FastQC Reports
+    contents:
       - qc_aggregate
+  - title: Inspecting Problems
+    contents:
       - qc_problems
-      - qc_report
+  - title: Importing and Plotting FastQC Reports
+    contents:
       - qc_read
       - qc_plot
+  - title: Building One-Sample and Multi-QC Reports
+    contents:
+      - qc_report
+  - title: Others
+    contents:
       - qc_unzip
       
 

@@ -74,13 +74,13 @@ qc_warns <- function(object, element = c("sample", "module"), compact = TRUE){
 #'  and/or warned in the most samples }
 #'@param name character vector containing the names of modules and/or samples of
 #'  interest. See \link{qc_read} for valid module names. If name specified, a 
-#'  streched output format is returned by default unless you explicitly indicate
+#'  stretched output format is returned by default unless you explicitly indicate
 #'  compact = TRUE.
 #'@param status character vector specifying the module status. Allowed values 
 #'  includes one or the combination of c("FAIL", "WARN"). If status = "FAIL", 
 #'  only modules with failed status are returned.
 #'@param compact logical value. If TRUE, returns a compact output format; 
-#'  otherwise, returns a streched format.
+#'  otherwise, returns a stretched format.
 #'@export
 qc_problems <- function(object,
                         element = c("sample", "module"),

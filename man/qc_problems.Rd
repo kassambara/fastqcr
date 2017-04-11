@@ -23,11 +23,11 @@ failed and/or warned modules \item If "module", shows moduled that failed
 and/or warned in the most samples }}
 
 \item{compact}{logical value. If TRUE, returns a compact output format; 
-otherwise, returns a streched format.}
+otherwise, returns a stretched format.}
 
 \item{name}{character vector containing the names of modules and/or samples of
 interest. See \link{qc_read} for valid module names. If name specified, a 
-streched output format is returned by default unless you explicitly indicate
+stretched output format is returned by default unless you explicitly indicate
 compact = TRUE.}
 
 \item{status}{character vector specifying the module status. Allowed values 
