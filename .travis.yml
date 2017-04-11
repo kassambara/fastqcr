@@ -1,19 +1,19 @@
 language: r
 r_packages:
- - dplyr,
+ - dplyr
  - devtools
- - grid,
- - gridExtra,
- - ggplot2,
- - magrittr,
- - readr,
- - rmarkdown,
- - rvest,
- - tibble,
- - tidyr,
- - scales,
- - stats,
- - utils,
- - xml2,
+ - grid
+ - gridExtra
+ - ggplot2
+ - magrittr
+ - readr
+ - rmarkdown
+ - rvest
+ - tibble
+ - tidyr
+ - scales
+ - stats
+ - utils
+ - xml2
  - knitr
 sudo: required
