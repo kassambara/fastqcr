@@ -4,9 +4,7 @@
 
 <br/>
 
-<style>
-.error,.notice,.warning,.success,.question{height:auto;padding:10px 10px 10px 40px;margin:5px auto 15px;line-height:20px;border:1px solid #FFF;border-radius:4px;position:relative;display:block;text-align:left}.question{background-color:#DAEEF8;border-color:#BDE9F2}.notice{background-color:#F0F0F0;border-color:#E2E2E2}.warning{background-color:#FDF9E4;border-color:#FBECCD}.error{background-color:#F3DFDF;border-color:#ECCDD2}.success{background-color:#E0F1D9;border-color:#D7EAC7}.block,.medium-block,.small-block{border:1px solid #CCC;border-top:2px solid #366393;border-bottom:1px solid #99B1CB;background:#F2F8FF;padding:10px}.block{width:auto;margin-top:10px;margin-bottom:10px}img{background-color:#fff;background-color:#FFF;border-radius:3px;border:1px solid #CCC;box-shadow:2px 2px 12px -5px #999;margin:0 5px;margin-bottom:5px;padding:5px;text-align:center}
-</style>
+
 fastqcr: Quality Control of Sequencing Data
 ===========================================
 
@@ -56,7 +54,7 @@ qc.dir <- system.file("fastqc_results", package = "fastqcr")
 qc <- qc_aggregate(qc.dir)
 qc
 
-# Inspecting QC problems
+# Inspecting QC Problems
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 # See which modules failed in the most samples
@@ -182,11 +180,12 @@ library(fastqcr)
 # Demo QC dir
 qc.dir <- system.file("fastqc_results", package = "fastqcr")
 qc.dir
-# [1] ""
+# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"
    
 # List of files in the directory
 list.files(qc.dir)
-# character(0)
+# [1] "S1_fastqc.zip" "S2_fastqc.zip" "S3_fastqc.zip" "S4_fastqc.zip"
+# [5] "S5_fastqc.zip"
 ```
 
 The demo QC directory contains five zipped folders corresponding to the FastQC output for 5 samples.
@@ -202,16 +201,16 @@ The aggregated report looks like this:
 
 | sample | module                      | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
 |:-------|:----------------------------|:-------|:---------|:-----------|-------:|--------:|
-| S1     | Per base sequence content   | FAIL   | 50299587 | 35-76      |      48|    17.24|
-| S5     | Per base sequence quality   | PASS   | 65011962 | 35-76      |      48|    18.15|
 | S3     | Adapter Content             | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S1     | Sequence Duplication Levels | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S1     | Basic Statistics            | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S3     | Per base sequence quality   | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S3     | Per tile sequence quality   | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S2     | Per sequence quality scores | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S4     | Per tile sequence quality   | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S3     | Sequence Duplication Levels | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S2     | Adapter Content             | PASS   | 50299587 | 35-76      |      48|    15.70|
 | S4     | Per sequence quality scores | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S4     | Per tile sequence quality   | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S4     | Per base sequence quality   | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S4     | Per base N content          | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S4     | Adapter Content             | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S5     | Overrepresented sequences   | PASS   | 65011962 | 35-76      |      48|    18.15|
+| S5     | Per sequence quality scores | PASS   | 65011962 | 35-76      |      48|    18.15|
 
 Column names:
 
@@ -523,7 +522,7 @@ We'll build a multi-qc report for the following demo QC directory:
 # Demo QC Directory
 qc.dir <- system.file("fastqc_results", package = "fastqcr")
 qc.dir
-# [1] ""
+# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"
 ```
 
 ``` r
@@ -543,7 +542,7 @@ We'll build a report for the following demo QC file:
 ``` r
  qc.file <- system.file("fastqc_results", "S1_fastqc.zip", package = "fastqcr")
 qc.file
-# [1] ""
+# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"
 ```
 
 -   **One-Sample QC report with plot interpretations**:
@@ -577,7 +576,7 @@ We'll visualize the output for sample 1:
 # Demo file
 qc.file <- system.file("fastqc_results", "S1_fastqc.zip",  package = "fastqcr")
 qc.file
-# [1] ""
+# [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"
 ```
 
 We start by reading the output using the function **qc\_read**(), which returns a list of tibbles containing the data for specified modules:

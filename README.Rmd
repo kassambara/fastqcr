@@ -85,7 +85,7 @@ qc.dir <- system.file("fastqc_results", package = "fastqcr")
 qc <- qc_aggregate(qc.dir)
 qc
 
-# Inspecting QC problems
+# Inspecting QC Problems
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 # See which modules failed in the most samples
