@@ -147,7 +147,7 @@ qc_problems(qc, "sample")
     
    
    
-- **Streched format** with details
+- **Stretched format** with details
     
     
 ```{r}
