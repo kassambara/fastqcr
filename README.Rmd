@@ -43,7 +43,7 @@ The **fastqcr** R package provides helper functions to easily and automatically 
    
 Additionally, the **fastqcr** package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: http://www.sthda.com/english/rpkgs/fastqcr/.
     
-Examples of QC reports, generated automatically by the **fastqcr** R package, includes:   
+Examples of QC reports, generated automatically by the **fastqcr** R package, include:   
     
 - [Multi-QC report for multiple samples](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html)
 - [One sample QC report (+ interpretation)](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html)
@@ -547,7 +547,7 @@ qc.file
 - **One-Sample QC report with plot interpretations**:   
    
 ```{r, eval = FALSE}
- qc_report(qc.file, result.file = "~/Desktop/result",
+ qc_report(qc.file, result.file = "one-sample-report-with-interpretation",
    interpret = TRUE)
 ```
      
@@ -561,8 +561,8 @@ An example of report is available at: <a href= "http://www.sthda.com/english/rpk
      
  
 ```{r, eval = FALSE}
- qc_report(qc.file, result.file = "~/Desktop/result",
-   interpret = TRUE)
+ qc_report(qc.file, result.file = "one-sample-report",
+   interpret = FALSE)
 ```
      
 

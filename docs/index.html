@@ -90,7 +90,7 @@
 <p>If you have hundreds of samples, you’re not going to open up each HTML page. You need some way of looking at these data in aggregate.</p>
 <p>The <strong>fastqcr</strong> R package provides helper functions to easily and automatically parse, aggregate and analyze FastQC reports for large numbers of samples.</p>
 <p>Additionally, the <strong>fastqcr</strong> package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: <a href="http://www.sthda.com/english/rpkgs/fastqcr/" class="uri">http://www.sthda.com/english/rpkgs/fastqcr/</a>.</p>
-<p>Examples of QC reports, generated automatically by the <strong>fastqcr</strong> R package, includes:</p>
+<p>Examples of QC reports, generated automatically by the <strong>fastqcr</strong> R package, include:</p>
 <ul>
 <li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html">Multi-QC report for multiple samples</a></li>
 <li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html">One sample QC report (+ interpretation)</a></li>
@@ -247,7 +247,7 @@ qc.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span 
 <span class="co"># Demo QC dir</span>
 qc.dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"fastqc_results"</span>, <span class="dt">package =</span> <span class="st">"fastqcr"</span>)
 qc.dir
-<span class="co"># [1] "/Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results"</span>
+<span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"</span>
    
 <span class="co"># List of files in the directory</span>
 <span class="kw">list.files</span>(qc.dir)
@@ -270,33 +270,6 @@ qc</code></pre></div>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">S5</td>
-<td align="left">Per base sequence content</td>
-<td align="left">FAIL</td>
-<td align="left">65011962</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">18.15</td>
-</tr>
-<tr class="even">
-<td align="left">S1</td>
-<td align="left">Adapter Content</td>
-<td align="left">PASS</td>
-<td align="left">50299587</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">17.24</td>
-</tr>
-<tr class="odd">
-<td align="left">S1</td>
-<td align="left">Per base sequence quality</td>
-<td align="left">PASS</td>
-<td align="left">50299587</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">17.24</td>
-</tr>
-<tr class="even">
 <td align="left">S2</td>
 <td align="left">Per base N content</td>
 <td align="left">PASS</td>
@@ -305,15 +278,6 @@ qc</code></pre></div>
 <td align="right">48</td>
 <td align="right">15.70</td>
 </tr>
-<tr class="odd">
-<td align="left">S2</td>
-<td align="left">Adapter Content</td>
-<td align="left">PASS</td>
-<td align="left">50299587</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">15.70</td>
-</tr>
 <tr class="even">
 <td align="left">S5</td>
 <td align="left">Adapter Content</td>
@@ -325,7 +289,7 @@ qc</code></pre></div>
 </tr>
 <tr class="odd">
 <td align="left">S2</td>
-<td align="left">Overrepresented sequences</td>
+<td align="left">Per base sequence quality</td>
 <td align="left">PASS</td>
 <td align="left">50299587</td>
 <td align="left">35-76</td>
@@ -333,26 +297,62 @@ qc</code></pre></div>
 <td align="right">15.70</td>
 </tr>
 <tr class="even">
-<td align="left">S1</td>
+<td align="left">S3</td>
+<td align="left">Adapter Content</td>
+<td align="left">PASS</td>
+<td align="left">67255341</td>
+<td align="left">35-76</td>
+<td align="right">49</td>
+<td align="right">22.14</td>
+</tr>
+<tr class="odd">
+<td align="left">S4</td>
+<td align="left">Per tile sequence quality</td>
+<td align="left">PASS</td>
+<td align="left">67255341</td>
+<td align="left">35-76</td>
+<td align="right">49</td>
+<td align="right">19.89</td>
+</tr>
+<tr class="even">
+<td align="left">S4</td>
+<td align="left">Per sequence GC content</td>
+<td align="left">FAIL</td>
+<td align="left">67255341</td>
+<td align="left">35-76</td>
+<td align="right">49</td>
+<td align="right">19.89</td>
+</tr>
+<tr class="odd">
+<td align="left">S4</td>
+<td align="left">Per sequence quality scores</td>
+<td align="left">PASS</td>
+<td align="left">67255341</td>
+<td align="left">35-76</td>
+<td align="right">49</td>
+<td align="right">19.89</td>
+</tr>
+<tr class="even">
+<td align="left">S2</td>
 <td align="left">Per sequence quality scores</td>
 <td align="left">PASS</td>
 <td align="left">50299587</td>
 <td align="left">35-76</td>
 <td align="right">48</td>
-<td align="right">17.24</td>
+<td align="right">15.70</td>
 </tr>
 <tr class="odd">
-<td align="left">S2</td>
-<td align="left">Sequence Duplication Levels</td>
-<td align="left">PASS</td>
-<td align="left">50299587</td>
+<td align="left">S3</td>
+<td align="left">Per base sequence content</td>
+<td align="left">FAIL</td>
+<td align="left">67255341</td>
 <td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">15.70</td>
+<td align="right">49</td>
+<td align="right">22.14</td>
 </tr>
 <tr class="even">
 <td align="left">S5</td>
-<td align="left">Per base sequence quality</td>
+<td align="left">Basic Statistics</td>
 <td align="left">PASS</td>
 <td align="left">65011962</td>
 <td align="left">35-76</td>
@@ -679,7 +679,7 @@ For each sample, the number of problems (failures) and the name of modules, that
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Demo QC Directory</span>
 qc.dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"fastqc_results"</span>, <span class="dt">package =</span> <span class="st">"fastqcr"</span>)
 qc.dir
-<span class="co"># [1] "/Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results"</span></code></pre></div>
+<span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Build a report</span>
 <span class="kw"><a href="reference/qc_report.html">qc_report</a></span>(qc.dir, <span class="dt">result.file =</span> <span class="st">"~/Desktop/multi-qc-result"</span>,
           <span class="dt">experiment =</span> <span class="st">"Exome sequencing of colon cancer cell lines"</span>)</code></pre></div>
@@ -695,12 +695,12 @@ An example of report is available at: <a href="http://www.sthda.com/english/rpkg
 <p>We’ll build a report for the following demo QC file:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> qc.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"fastqc_results"</span>, <span class="st">"S1_fastqc.zip"</span>, <span class="dt">package =</span> <span class="st">"fastqcr"</span>)
 qc.file
-<span class="co"># [1] "/Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S1_fastqc.zip"</span></code></pre></div>
+<span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"</span></code></pre></div>
 <ul>
 <li>
 <strong>One-Sample QC report with plot interpretations</strong>:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw"><a href="reference/qc_report.html">qc_report</a></span>(qc.file, <span class="dt">result.file =</span> <span class="st">"~/Desktop/result"</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw"><a href="reference/qc_report.html">qc_report</a></span>(qc.file, <span class="dt">result.file =</span> <span class="st">"one-sample-report-with-interpretation"</span>,
    <span class="dt">interpret =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="success">
 <p>
@@ -711,8 +711,8 @@ An example of report is available at: <a href="http://www.sthda.com/english/rpkg
 <li>
 <strong>One-Sample QC report without plot interpretations</strong>:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw"><a href="reference/qc_report.html">qc_report</a></span>(qc.file, <span class="dt">result.file =</span> <span class="st">"~/Desktop/result"</span>,
-   <span class="dt">interpret =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw"><a href="reference/qc_report.html">qc_report</a></span>(qc.file, <span class="dt">result.file =</span> <span class="st">"one-sample-report"</span>,
+   <span class="dt">interpret =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <div class="success">
 <p>
 An example of report is available at: <a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html" target="_blank"> One sample QC report without interpretation</a>
@@ -727,7 +727,7 @@ An example of report is available at: <a href="http://www.sthda.com/english/rpkg
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Demo file</span>
 qc.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"fastqc_results"</span>, <span class="st">"S1_fastqc.zip"</span>,  <span class="dt">package =</span> <span class="st">"fastqcr"</span>)
 qc.file
-<span class="co"># [1] "/Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S1_fastqc.zip"</span></code></pre></div>
+<span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"</span></code></pre></div>
 <p>We start by reading the output using the function <strong>qc_read</strong>(), which returns a list of tibbles containing the data for specified modules:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read all modules</span>
 qc &lt;-<span class="st"> </span><span class="kw"><a href="reference/qc_read.html">qc_read</a></span>(qc.file)
@@ -783,6 +783,8 @@ qc &lt;-<span class="st"> </span><span class="kw"><a href="reference/qc_read.htm
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=fastqcr">https://​cran.r-project.org/​package=fastqcr</a>
+</li>
 <li>Report a bug at <br><a href="https://github.com/kassambara/fastqcr/issues">https://​github.com/​kassambara/​fastqcr/​issues</a>
 </li>
 </ul>
