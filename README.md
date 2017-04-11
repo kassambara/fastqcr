@@ -4,7 +4,9 @@
 
 <br/>
 
-
+<style>
+.error,.notice,.warning,.success,.question{height:auto;padding:10px 10px 10px 40px;margin:5px auto 15px;line-height:20px;border:1px solid #FFF;border-radius:4px;position:relative;display:block;text-align:left}.question{background-color:#DAEEF8;border-color:#BDE9F2}.notice{background-color:#F0F0F0;border-color:#E2E2E2}.warning{background-color:#FDF9E4;border-color:#FBECCD}.error{background-color:#F3DFDF;border-color:#ECCDD2}.success{background-color:#E0F1D9;border-color:#D7EAC7}.block,.medium-block,.small-block{border:1px solid #CCC;border-top:2px solid #366393;border-bottom:1px solid #99B1CB;background:#F2F8FF;padding:10px}.block{width:auto;margin-top:10px;margin-bottom:10px}img{background-color:#fff;background-color:#FFF;border-radius:3px;border:1px solid #CCC;box-shadow:2px 2px 12px -5px #999;margin:0 5px;margin-bottom:5px;padding:5px;text-align:center}
+</style>
 fastqcr: Quality Control of Sequencing Data
 ===========================================
 
@@ -40,7 +42,40 @@ Load fastqcr:
 library("fastqcr")
 ```
 
-Main functions
+Quick Start
+-----------
+
+``` r
+library(fastqcr)
+
+# Aggregating Multiple FastQC Reports into a Data Frame 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Demo QC directory containing zipped FASTQC reports
+qc.dir <- system.file("fastqc_results", package = "fastqcr")
+qc <- qc_aggregate(qc.dir)
+qc
+
+# Inspecting QC problems
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# See which modules failed in the most samples
+qc_fails(qc, "module")
+# Or, see which samples failed the most
+qc_fails(qc, "sample")
+
+# Building Multi QC Reports
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+qc_report(qc.dir, result.file = "multi-qc-report" )
+
+# Building One-Sample QC Reports (+ Interpretation)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+qc.file <- system.file("fastqc_results", "S1_fastqc.zip", package = "fastqcr")
+qc_report(qc.file, result.file = "one-sample-report",
+          interpret = TRUE)
+```
+
+Main Functions
 --------------
 
 **1) Installing and Running FastQC**
@@ -165,18 +200,18 @@ qc
 
 The aggregated report looks like this:
 
-| sample | module                       | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
-|:-------|:-----------------------------|:-------|:---------|:-----------|-------:|--------:|
-| S1     | Kmer Content                 | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S2     | Sequence Duplication Levels  | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S1     | Sequence Length Distribution | WARN   | 50299587 | 35-76      |      48|    17.24|
-| S2     | Per base sequence quality    | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S2     | Per base N content           | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S2     | Adapter Content              | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S5     | Per base N content           | PASS   | 65011962 | 35-76      |      48|    18.15|
-| S1     | Sequence Duplication Levels  | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S2     | Per tile sequence quality    | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S3     | Basic Statistics             | PASS   | 67255341 | 35-76      |      49|    22.14|
+| sample | module                      | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
+|:-------|:----------------------------|:-------|:---------|:-----------|-------:|--------:|
+| S1     | Per base sequence content   | FAIL   | 50299587 | 35-76      |      48|    17.24|
+| S5     | Per base sequence quality   | PASS   | 65011962 | 35-76      |      48|    18.15|
+| S3     | Adapter Content             | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S1     | Sequence Duplication Levels | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S1     | Basic Statistics            | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S3     | Per base sequence quality   | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S3     | Per tile sequence quality   | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S2     | Per sequence quality scores | PASS   | 50299587 | 35-76      |      48|    15.70|
+| S4     | Per tile sequence quality   | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S4     | Per sequence quality scores | PASS   | 67255341 | 35-76      |      49|    19.89|
 
 Column names:
 

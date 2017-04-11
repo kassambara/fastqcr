@@ -105,9 +105,40 @@ devtools::<span class="kw">install_github</span>(<span class="st">"kassambara/fa
 <p>Load fastqcr:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"fastqcr"</span>)</code></pre></div>
 </div>
+<div id="quick-start" class="section level2">
+<h2 class="hasAnchor">
+<a href="#quick-start" class="anchor"> </a>Quick Start</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fastqcr)
+
+<span class="co"># Aggregating Multiple FastQC Reports into a Data Frame </span>
+<span class="co">#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="co"># Demo QC directory containing zipped FASTQC reports</span>
+qc.dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"fastqc_results"</span>, <span class="dt">package =</span> <span class="st">"fastqcr"</span>)
+qc &lt;-<span class="st"> </span><span class="kw"><a href="reference/qc_aggregate.html">qc_aggregate</a></span>(qc.dir)
+qc
+
+<span class="co"># Inspecting QC problems</span>
+<span class="co">#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="co"># See which modules failed in the most samples</span>
+<span class="kw"><a href="reference/qc_fails.html">qc_fails</a></span>(qc, <span class="st">"module"</span>)
+<span class="co"># Or, see which samples failed the most</span>
+<span class="kw"><a href="reference/qc_fails.html">qc_fails</a></span>(qc, <span class="st">"sample"</span>)
+
+<span class="co"># Building Multi QC Reports</span>
+<span class="co">#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="kw"><a href="reference/qc_report.html">qc_report</a></span>(qc.dir, <span class="dt">result.file =</span> <span class="st">"multi-qc-report"</span> )
+
+<span class="co"># Building One-Sample QC Reports (+ Interpretation)</span>
+<span class="co">#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+qc.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"fastqc_results"</span>, <span class="st">"S1_fastqc.zip"</span>, <span class="dt">package =</span> <span class="st">"fastqcr"</span>)
+<span class="kw"><a href="reference/qc_report.html">qc_report</a></span>(qc.file, <span class="dt">result.file =</span> <span class="st">"one-sample-report"</span>,
+          <span class="dt">interpret =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
 <div id="main-functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#main-functions" class="anchor"> </a>Main functions</h2>
+<a href="#main-functions" class="anchor"> </a>Main Functions</h2>
 <p><strong>1) Installing and Running FastQC</strong></p>
 <ul>
 <li><p><strong>fastqc_install</strong>(): Install the latest version of FastQC tool on Unix systems (MAC OSX and Linux)</p></li>
@@ -228,44 +259,26 @@ qc</code></pre></div>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">S3</td>
-<td align="left">Per tile sequence quality</td>
-<td align="left">PASS</td>
-<td align="left">67255341</td>
+<td align="left">S5</td>
+<td align="left">Per base sequence content</td>
+<td align="left">FAIL</td>
+<td align="left">65011962</td>
 <td align="left">35-76</td>
-<td align="right">49</td>
-<td align="right">22.14</td>
+<td align="right">48</td>
+<td align="right">18.15</td>
 </tr>
 <tr class="even">
-<td align="left">S2</td>
-<td align="left">Per sequence quality scores</td>
+<td align="left">S1</td>
+<td align="left">Adapter Content</td>
 <td align="left">PASS</td>
 <td align="left">50299587</td>
 <td align="left">35-76</td>
 <td align="right">48</td>
-<td align="right">15.70</td>
-</tr>
-<tr class="odd">
-<td align="left">S2</td>
-<td align="left">Sequence Length Distribution</td>
-<td align="left">WARN</td>
-<td align="left">50299587</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">15.70</td>
-</tr>
-<tr class="even">
-<td align="left">S4</td>
-<td align="left">Per tile sequence quality</td>
-<td align="left">PASS</td>
-<td align="left">67255341</td>
-<td align="left">35-76</td>
-<td align="right">49</td>
-<td align="right">19.89</td>
+<td align="right">17.24</td>
 </tr>
 <tr class="odd">
 <td align="left">S1</td>
-<td align="left">Per base N content</td>
+<td align="left">Per base sequence quality</td>
 <td align="left">PASS</td>
 <td align="left">50299587</td>
 <td align="left">35-76</td>
@@ -273,44 +286,62 @@ qc</code></pre></div>
 <td align="right">17.24</td>
 </tr>
 <tr class="even">
-<td align="left">S5</td>
-<td align="left">Per base sequence quality</td>
+<td align="left">S2</td>
+<td align="left">Per base N content</td>
 <td align="left">PASS</td>
-<td align="left">65011962</td>
+<td align="left">50299587</td>
 <td align="left">35-76</td>
 <td align="right">48</td>
-<td align="right">18.15</td>
+<td align="right">15.70</td>
 </tr>
 <tr class="odd">
-<td align="left">S4</td>
-<td align="left">Basic Statistics</td>
+<td align="left">S2</td>
+<td align="left">Adapter Content</td>
 <td align="left">PASS</td>
-<td align="left">67255341</td>
+<td align="left">50299587</td>
 <td align="left">35-76</td>
-<td align="right">49</td>
-<td align="right">19.89</td>
+<td align="right">48</td>
+<td align="right">15.70</td>
 </tr>
 <tr class="even">
 <td align="left">S5</td>
-<td align="left">Sequence Length Distribution</td>
-<td align="left">WARN</td>
+<td align="left">Adapter Content</td>
+<td align="left">PASS</td>
 <td align="left">65011962</td>
 <td align="left">35-76</td>
 <td align="right">48</td>
 <td align="right">18.15</td>
 </tr>
 <tr class="odd">
-<td align="left">S3</td>
+<td align="left">S2</td>
+<td align="left">Overrepresented sequences</td>
+<td align="left">PASS</td>
+<td align="left">50299587</td>
+<td align="left">35-76</td>
+<td align="right">48</td>
+<td align="right">15.70</td>
+</tr>
+<tr class="even">
+<td align="left">S1</td>
+<td align="left">Per sequence quality scores</td>
+<td align="left">PASS</td>
+<td align="left">50299587</td>
+<td align="left">35-76</td>
+<td align="right">48</td>
+<td align="right">17.24</td>
+</tr>
+<tr class="odd">
+<td align="left">S2</td>
 <td align="left">Sequence Duplication Levels</td>
 <td align="left">PASS</td>
-<td align="left">67255341</td>
+<td align="left">50299587</td>
 <td align="left">35-76</td>
-<td align="right">49</td>
-<td align="right">22.14</td>
+<td align="right">48</td>
+<td align="right">15.70</td>
 </tr>
 <tr class="even">
 <td align="left">S5</td>
-<td align="left">Per sequence quality scores</td>
+<td align="left">Per base sequence quality</td>
 <td align="left">PASS</td>
 <td align="left">65011962</td>
 <td align="left">35-76</td>
