@@ -89,20 +89,31 @@
 <p>It produces, for each sample, an html report and a ‘zip’ file, which contains a file called fastqc_data.txt and summary.txt.</p>
 <p>If you have hundreds of samples, you’re not going to open up each HTML page. You need some way of looking at these data in aggregate.</p>
 <p>The <strong>fastqcr</strong> R package provides helper functions to easily and automatically parse, aggregate and analyze FastQC reports for large numbers of samples.</p>
-<p>Additionally, the <strong>fastqcr</strong> package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations.</p>
+<p>Additionally, the <strong>fastqcr</strong> package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: <a href="http://www.sthda.com/english/rpkgs/fastqcr/" class="uri">http://www.sthda.com/english/rpkgs/fastqcr/</a>.</p>
 <p>Examples of QC reports, generated automatically by the <strong>fastqcr</strong> R package, includes:</p>
 <ul>
 <li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html">Multi-QC report for multiple samples</a></li>
 <li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html">One sample QC report (+ interpretation)</a></li>
 <li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html">One sample QC report (no interpretation)</a></li>
 </ul>
+<div class="figure">
+<img src="tools/fastqcr.png" alt="fastqcr logo"><p class="caption">fastqcr logo</p>
+</div>
 <div id="installation-and-loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation-and-loading" class="anchor"> </a>Installation and loading</h2>
-<p>Install the latest version from <a href="https://github.com/kassambara/fastqcr">GitHub</a>:</p>
+<ul>
+<li>fastqcr can be installed from <a href="https://cran.r-project.org/package=fastqcr">CRAN</a> as follow:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"fastqcr"</span>)</code></pre></div>
+<ul>
+<li>Or, install the latest version from <a href="https://github.com/kassambara/fastqcr">GitHub</a>:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(!<span class="kw">require</span>(devtools)) <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 devtools::<span class="kw">install_github</span>(<span class="st">"kassambara/fastqcr"</span>)</code></pre></div>
-<p>Load fastqcr:</p>
+<ul>
+<li>Load fastqcr:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"fastqcr"</span>)</code></pre></div>
 </div>
 <div id="quick-start" class="section level2">
@@ -489,10 +500,7 @@ The table shows, for each sample, some general statistics such as the total numb
 <h2 class="hasAnchor">
 <a href="#inspecting-problems" class="anchor"> </a>Inspecting Problems</h2>
 <p>Once you’ve got this aggregated data, it’s easy to figure out what (if anything) is wrong with your data.</p>
-<ol style="list-style-type: decimal">
-<li>
-<strong>R functions</strong>. You can inspect problems per either modules or samples using the following R functions:</li>
-</ol>
+<p><strong>1) R functions</strong>. You can inspect problems per either modules or samples using the following R functions:</p>
 <ul>
 <li>
 <strong>qc_fails</strong>(qc): Displays samples or modules that failed.</li>
@@ -501,10 +509,8 @@ The table shows, for each sample, some general statistics such as the total numb
 <li>
 <strong>qc_problems</strong>(qc): Union of <strong>qc_fails</strong>() and <strong>qc_warns</strong>(). Display which samples or modules that failed or warned.</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li><p><strong>Input data</strong>: aggregated data from <strong>qc_aggregate</strong>()</p></li>
-<li><p><strong>Output data</strong>: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a stretched format, specify the argument <em>compact = FALSE</em>.</p></li>
-</ol>
+<p><strong>2) Input data</strong>: aggregated data from <strong>qc_aggregate</strong>()</p>
+<p><strong>3) Output data</strong>: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a stretched format, specify the argument <em>compact = FALSE</em>.</p>
 <p>The format and the interpretation of the outputs depend on the additional argument <em>element</em>, which value is one of c(“sample”, “module”).</p>
 <ul>
 <li>If <strong>element = “sample”</strong> (default), results are samples with failed and/or warned modules. The results contain the following columns:
@@ -714,9 +720,9 @@ An example of report is available at: <a href="http://www.sthda.com/english/rpkg
 </div>
 </div>
 </div>
-<div id="plotting" class="section level2">
+<div id="importing-and-plotting-a-fastqc-qc-report" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plotting" class="anchor"> </a>Plotting</h2>
+<a href="#importing-and-plotting-a-fastqc-qc-report" class="anchor"> </a>Importing and Plotting a FastQC QC Report</h2>
 <p>We’ll visualize the output for sample 1:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Demo file</span>
 qc.file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"fastqc_results"</span>, <span class="st">"S1_fastqc.zip"</span>,  <span class="dt">package =</span> <span class="st">"fastqcr"</span>)

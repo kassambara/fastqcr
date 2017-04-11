@@ -4,6 +4,7 @@
 
 <br/>
 
+
 fastqcr: Quality Control of Sequencing Data
 ===========================================
 
@@ -15,7 +16,7 @@ If you have hundreds of samples, you’re not going to open up each HTML page. Y
 
 The **fastqcr** R package provides helper functions to easily and automatically parse, aggregate and analyze FastQC reports for large numbers of samples.
 
-Additionally, the **fastqcr** package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations.
+Additionally, the **fastqcr** package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: <http://www.sthda.com/english/rpkgs/fastqcr/>.
 
 Examples of QC reports, generated automatically by the **fastqcr** R package, includes:
 
@@ -23,17 +24,25 @@ Examples of QC reports, generated automatically by the **fastqcr** R package, in
 -   [One sample QC report (+ interpretation)](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html)
 -   [One sample QC report (no interpretation)](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html)
 
+![fastqcr logo](tools/fastqcr.png)
+
 Installation and loading
 ------------------------
 
-Install the latest version from [GitHub](https://github.com/kassambara/fastqcr):
+-   fastqcr can be installed from [CRAN](https://cran.r-project.org/package=fastqcr) as follow:
+
+``` r
+install.packages("fastqcr")
+```
+
+-   Or, install the latest version from [GitHub](https://github.com/kassambara/fastqcr):
 
 ``` r
 if(!require(devtools)) install.packages("devtools")
 devtools::install_github("kassambara/fastqcr")
 ```
 
-Load fastqcr:
+-   Load fastqcr:
 
 ``` r
 library("fastqcr")
@@ -333,15 +342,15 @@ Inspecting Problems
 
 Once you’ve got this aggregated data, it’s easy to figure out what (if anything) is wrong with your data.
 
-1.  **R functions**. You can inspect problems per either modules or samples using the following R functions:
+**1) R functions**. You can inspect problems per either modules or samples using the following R functions:
 
 -   **qc\_fails**(qc): Displays samples or modules that failed.
 -   **qc\_warns**(qc): Displays samples or modules that warned.
 -   **qc\_problems**(qc): Union of **qc\_fails**() and **qc\_warns**(). Display which samples or modules that failed or warned.
 
-1.  **Input data**: aggregated data from **qc\_aggregate**()
+**2) Input data**: aggregated data from **qc\_aggregate**()
 
-2.  **Output data**: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a stretched format, specify the argument *compact = FALSE*.
+**3) Output data**: Returns samples or FastQC modules with failures or warnings. By default, these functions return a compact output format. If you want a stretched format, specify the argument *compact = FALSE*.
 
 The format and the interpretation of the outputs depend on the additional argument *element*, which value is one of c("sample", "module").
 
@@ -565,8 +574,8 @@ An example of report is available at: <a href= "http://www.sthda.com/english/rpk
 An example of report is available at: <a href= "http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html", target = "_blank"> One sample QC report without interpretation</a>
 </p>
 
-Plotting
---------
+Importing and Plotting a FastQC QC Report
+-----------------------------------------
 
 We'll visualize the output for sample 1:
 
