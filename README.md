@@ -18,6 +18,12 @@ The **fastqcr** R package provides helper functions to easily and automatically 
 
 Additionally, the **fastqcr** package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations.
 
+Examples of QC reports, generated automatically by the **fastqcr** R package, includes:
+
+-   [Multi-QC report for multiple samples](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html)
+-   [One sample QC report (+ interpretation)](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html)
+-   [One sample QC report (no interpretation)](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html)
+
 Installation and loading
 ------------------------
 
@@ -37,28 +43,40 @@ library("fastqcr")
 Main functions
 --------------
 
+**Installing and Runing FastQC**
+<hr/>
 -   **fastqc\_install**(): Install the latest version of FastQC tool on Unix systems (MAC OSX and Linux)
 
 -   **fastqc**(): Run the FastQC tool from R.
 
+**Aggregating and Summarizing Multiple Reports**
+<hr/>
 -   **qc &lt;- qc\_aggregate**(): Aggregate multiple FastQC reports into a data frame.
 
 -   **summary**(qc): Generates a summary of qc\_aggregate.
 
 -   **qc\_stats**(qc): General statistics of FastQC reports.
 
+**Inpecting Problems**
+<hr/>
 -   **qc\_fails**(qc): Displays samples or modules that failed.
 
 -   **qc\_warns**(qc): Displays samples or modules that warned.
 
--   **qc\_problems**(qc, "sample"): Union of **qc\_fails**() and **qc\_warns**(). Display which samples or modules that failed or warned.
+-   **qc\_problems**(qc): Union of **qc\_fails**() and **qc\_warns**(). Display which samples or modules that failed or warned.
 
+**Importing and Plotting a FastQC Report**
+<hr/>
 -   **qc\_read**(): Read FastQC data into R.
 
 -   **qc\_plot**(qc): Plot FastQC data
 
+**Building Report**
+<hr/>
 -   **qc\_report**(): Create an HTML file containing FastQC reports of one or multiple files. Inputs can be either a directory containing multiple FastQC reports or a single sample FastQC report.
 
+**Other**
+<hr/>
 -   **qc\_unzip**(): Unzip all zipped files in the qc.dir directory.
 
 Installing FastQC from R
@@ -148,18 +166,18 @@ qc
 
 The aggregated report looks like this:
 
-| sample | module                      | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
-|:-------|:----------------------------|:-------|:---------|:-----------|-------:|--------:|
-| S1     | Adapter Content             | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S2     | Overrepresented sequences   | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S4     | Sequence Duplication Levels | PASS   | 67255341 | 35-76      |      49|    19.89|
-| S2     | Basic Statistics            | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S2     | Per base N content          | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S4     | Per base N content          | PASS   | 67255341 | 35-76      |      49|    19.89|
-| S3     | Per base N content          | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S5     | Basic Statistics            | PASS   | 65011962 | 35-76      |      48|    18.15|
-| S3     | Adapter Content             | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S1     | Per base N content          | PASS   | 50299587 | 35-76      |      48|    17.24|
+| sample | module                       | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
+|:-------|:-----------------------------|:-------|:---------|:-----------|-------:|--------:|
+| S1     | Per base N content           | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S3     | Per tile sequence quality    | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S3     | Kmer Content                 | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S4     | Per sequence GC content      | FAIL   | 67255341 | 35-76      |      49|    19.89|
+| S4     | Per base sequence content    | FAIL   | 67255341 | 35-76      |      49|    19.89|
+| S1     | Sequence Length Distribution | WARN   | 50299587 | 35-76      |      48|    17.24|
+| S3     | Per base sequence content    | FAIL   | 67255341 | 35-76      |      49|    22.14|
+| S2     | Per base sequence content    | FAIL   | 50299587 | 35-76      |      48|    15.70|
+| S1     | Per sequence quality scores  | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S2     | Per base N content           | PASS   | 50299587 | 35-76      |      48|    15.70|
 
 Column names:
 
