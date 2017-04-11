@@ -10,6 +10,6 @@ There were no ERRORs, WARNINGs or NOTES.
 ## Downstream dependencies
 There are currently no downstream dependencies for this package
 
-## Submission
+## Resubmission
    
-This is a first submission.
+This is a resubmission. In this version, I removed the VignetteBuilder field in the DESCRIPTION file.
