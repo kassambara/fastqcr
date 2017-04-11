@@ -77,60 +77,63 @@ library("fastqcr")
    
    
 **Installing and Runing FastQC**
-<hr/><br/>
-    
+<hr/>
+      
+      
 - **fastqc_install**(): Install the latest version of FastQC tool on Unix systems (MAC OSX and Linux)
    
 - **fastqc**(): Run the FastQC tool from R.
      
-     
+         
      
 **Aggregating and Summarizing Multiple Reports**
-<hr/><br/>
-    
-
+<hr/>
+       
+       
 - **qc <- qc_aggregate**(): Aggregate multiple FastQC reports into a data frame.
    
 - **summary**(qc): Generates a summary of qc_aggregate. 
   
 - **qc_stats**(qc): General statistics of FastQC reports.
        
-      
+     
+    
 **Inpecting Problems**
-<hr/><br/>
+<hr/>
       
-
+      
 - **qc_fails**(qc): Displays samples or modules that failed.
    
 - **qc_warns**(qc): Displays samples or modules that warned.
     
 - **qc_problems**(qc): Union of **qc_fails**() and **qc_warns**(). Display which samples or modules that failed or warned.
     
-    
+        
     
 **Importing and Plotting a FastQC Report**
-<hr/><br/>
-      
-
+<hr/>
+        
+        
 - **qc\_read**(): Read FastQC data into R.
    
 - **qc\_plot**(qc): Plot FastQC data
       
-      
+          
       
 **Building Report**
-<hr/><br/>
-      
-
+<hr/>
+     
+     
 - **qc\_report**(): Create an HTML file containing FastQC reports of one or multiple files. Inputs can be either a directory containing multiple FastQC reports or a single sample FastQC report.
-      
+     
+          
      
 **Other**
-<hr/><br/>
-      
+<hr/>
 
 - **qc\_unzip**(): Unzip all zipped files in the qc.dir directory.
-    
+ <br/>
+ 
     
 ## Installing FastQC from R
     

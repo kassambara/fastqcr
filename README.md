@@ -45,16 +45,12 @@ Main functions
 
 **Installing and Runing FastQC**
 <hr/>
-<br/>
-
 -   **fastqc\_install**(): Install the latest version of FastQC tool on Unix systems (MAC OSX and Linux)
 
 -   **fastqc**(): Run the FastQC tool from R.
 
 **Aggregating and Summarizing Multiple Reports**
 <hr/>
-<br/>
-
 -   **qc &lt;- qc\_aggregate**(): Aggregate multiple FastQC reports into a data frame.
 
 -   **summary**(qc): Generates a summary of qc\_aggregate.
@@ -63,8 +59,6 @@ Main functions
 
 **Inpecting Problems**
 <hr/>
-<br/>
-
 -   **qc\_fails**(qc): Displays samples or modules that failed.
 
 -   **qc\_warns**(qc): Displays samples or modules that warned.
@@ -73,23 +67,17 @@ Main functions
 
 **Importing and Plotting a FastQC Report**
 <hr/>
-<br/>
-
 -   **qc\_read**(): Read FastQC data into R.
 
 -   **qc\_plot**(qc): Plot FastQC data
 
 **Building Report**
 <hr/>
-<br/>
-
 -   **qc\_report**(): Create an HTML file containing FastQC reports of one or multiple files. Inputs can be either a directory containing multiple FastQC reports or a single sample FastQC report.
 
 **Other**
 <hr/>
-<br/>
-
--   **qc\_unzip**(): Unzip all zipped files in the qc.dir directory.
+-   **qc\_unzip**(): Unzip all zipped files in the qc.dir directory. <br/>
 
 Installing FastQC from R
 ------------------------
@@ -178,18 +166,18 @@ qc
 
 The aggregated report looks like this:
 
-| sample | module                       | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
-|:-------|:-----------------------------|:-------|:---------|:-----------|-------:|--------:|
-| S3     | Sequence Length Distribution | WARN   | 67255341 | 35-76      |      49|    22.14|
-| S2     | Per sequence GC content      | WARN   | 50299587 | 35-76      |      48|    15.70|
-| S4     | Adapter Content              | PASS   | 67255341 | 35-76      |      49|    19.89|
-| S5     | Overrepresented sequences    | PASS   | 65011962 | 35-76      |      48|    18.15|
-| S4     | Kmer Content                 | PASS   | 67255341 | 35-76      |      49|    19.89|
-| S2     | Sequence Duplication Levels  | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S5     | Per sequence GC content      | WARN   | 65011962 | 35-76      |      48|    18.15|
-| S3     | Overrepresented sequences    | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S5     | Sequence Duplication Levels  | PASS   | 65011962 | 35-76      |      48|    18.15|
-| S4     | Sequence Duplication Levels  | PASS   | 67255341 | 35-76      |      49|    19.89|
+| sample | module                      | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
+|:-------|:----------------------------|:-------|:---------|:-----------|-------:|--------:|
+| S1     | Per base N content          | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S2     | Adapter Content             | PASS   | 50299587 | 35-76      |      48|    15.70|
+| S4     | Sequence Duplication Levels | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S2     | Per base sequence content   | FAIL   | 50299587 | 35-76      |      48|    15.70|
+| S3     | Per tile sequence quality   | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S3     | Per sequence GC content     | FAIL   | 67255341 | 35-76      |      49|    22.14|
+| S1     | Sequence Duplication Levels | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S5     | Per tile sequence quality   | PASS   | 65011962 | 35-76      |      48|    18.15|
+| S4     | Per base N content          | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S3     | Per base sequence quality   | PASS   | 67255341 | 35-76      |      49|    22.14|
 
 Column names:
 
