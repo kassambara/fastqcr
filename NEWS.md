@@ -1,6 +1,10 @@
 # fastqcr 0.1.0
     
     
+## Bug fixes
+   
+- Now, `qc_report()`  handles better relative paths to FastQC zipfiles ([@ACharbonneau, #1](https://github.com/kassambara/fastqcr/issues/1))
+    
 ## New features
    
    
