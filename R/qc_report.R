@@ -39,6 +39,8 @@ qc_report <- function(qc.path, result.file, experiment = NULL,
                       interpret = FALSE, template = NULL, preview = TRUE)
   {
 
+  if(qc.path == ".")
+    qc.path <- getwd()
   # partial match of sample file name
   # file = "samplename"
   if(!.is_dir(qc.path) & !.is_file(qc.path)){
