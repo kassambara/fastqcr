@@ -39,7 +39,7 @@ qc_report <- function(qc.path, result.file, experiment = NULL,
                       interpret = FALSE, template = NULL, preview = TRUE)
   {
 
-  if(qc.path == ".")
+  if(qc.path == ".") 
     qc.path <- getwd()
   # partial match of sample file name
   # file = "samplename"
@@ -56,6 +56,7 @@ qc_report <- function(qc.path, result.file, experiment = NULL,
   
   if(!.path.exists(qc.path))
     stop("Specified QC path doesn't exist.")
+  qc.path <- normalizePath(qc.path)
   
   .create_dir(dirname(result.file))
 
