@@ -1,3 +1,18 @@
+# fastqcr 0.1.0.999
+
+## New features
+
+New functions added to read and plot a collection of samples together:  
+   
+- `qc_read_collection()` (@MahShaaban , [#4](https://github.com/kassambara/fastqcr/pull/4))
+
+
+## Minor changes
+
+
+## Bug fixes
+
+
 # fastqcr 0.1.0
     
     
