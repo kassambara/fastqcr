@@ -6,7 +6,7 @@
 #' @param sample_names A \code{character} vector of length equals that of the first argument \code{files}
 #' @inheritParams qc_read
 #'
-#' @author Mahmoud Shaaban, \email{mahmoud.s.fahmy@@students.kasralainy.edu.eg}
+#' @author Mahmoud Ahmed, \email{mahmoud.s.fahmy@students.kasralainy.edu.eg}
 #'
 #' @return A \code{list} of \code{tibbles} containing the data of specified modules form each file.
 #' 
