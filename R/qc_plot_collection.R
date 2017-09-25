@@ -6,6 +6,8 @@
 #' @param ggtheme A plotting themem
 #' @param ... Other
 #'
+#' @author Mahmoud Shaaban, \email{mahmoud.s.fahmy@@students.kasralainy.edu.eg}
+#'
 #' @return A graph of mulitple lines each corresponds to the GC content from one sample.
 #' 
 #' @examples 
