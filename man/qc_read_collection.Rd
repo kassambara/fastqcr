@@ -55,3 +55,6 @@ qc <- qc_read_collection(qc.files,
     modules = "Per base sequence quality")
 
 }
+\author{
+Mahmoud Ahmed, \email{mahmoud.s.fahmy@students.kasralainy.edu.eg}
+}
