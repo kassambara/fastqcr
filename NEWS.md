@@ -5,6 +5,10 @@
 New functions added to read and plot a collection of samples together:  
    
 - `qc_read_collection()` (@MahShaaban , [#4](https://github.com/kassambara/fastqcr/pull/4))
+- `qc_plot_collection()` (@MahShaaban , [#4](https://github.com/kassambara/fastqcr/pull/5))
+
+When possible, the data from multiple samples are overlayed on a single graph and otherwise on multiple facets (when there is more than one line in a one sample plot). As with plotting the single file modules, the function `qc_plot_collection()` dispatches on the appropriate class `qc_read_collection()` and calls the internals corresponding to the input of the argument modules.
+
 
 
 ## Minor changes
