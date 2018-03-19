@@ -12,7 +12,8 @@ When possible, the data from multiple samples are overlayed on a single graph an
 
 
 ## Minor changes
-
+  
+- New argument `fastqc.path` added to the function `fastqc()`.
 
 ## Bug fixes
 

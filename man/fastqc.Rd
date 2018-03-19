@@ -4,7 +4,8 @@
 \alias{fastqc}
 \title{Run FastQC Tool}
 \usage{
-fastqc(fq.dir = getwd(), qc.dir = NULL, threads = 4)
+fastqc(fq.dir = getwd(), qc.dir = NULL, threads = 4,
+  fastqc.path = "~/bin/FastQC/fastqc")
 }
 \arguments{
 \item{fq.dir}{path to the directory containing fastq files. Default is the
@@ -14,6 +15,8 @@ current working directory.}
 named fastqc_results is created in the current working directory.}
 
 \item{threads}{the number of threads to be used. Default is 4.}
+
+\item{fastqc.path}{path to fastqc program}
 }
 \value{
 Create a directory containing the reports
