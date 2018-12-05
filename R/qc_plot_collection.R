@@ -200,12 +200,12 @@ qc_plot_collection <- function(qc, modules = "all"){
   
   d <- qc$per_sequence_quality_scores
   if(nrow(d) == 0) return(NULL)
-  
-  ggplot(d, aes_string(x = "Quality", y = "Count", color = 'sample'))+
+  colnames(d) <- c("sample", "quality", "count")
+  ggplot(d, aes_string(x = "quality", y = "count", color = 'sample'))+
     geom_line() +
     labs(title = "Per sequence quality scores",
          subtitle = "Quality score distribution over all sequences",
-         x = "Mean Sequence Quality (Phred Score)")+
+         x = "Mean Sequence Quality (Phred Score)", y = "Count")+
     theme_minimal()
 }
 
