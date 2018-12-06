@@ -24,7 +24,7 @@ Imports:
     gridExtra,
     ggplot2,
     magrittr,
-    readr,
+    readr (>= 1.2.0),
     rmarkdown(>= 1.4),
     rvest,
     tibble,
@@ -50,3 +50,5 @@ Collate:
     'qc_read_collection.R'
     'qc_report.R'
     'qc_unzip.R'
+Remotes:
+  tidyverse/readr
