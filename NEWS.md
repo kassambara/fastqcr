@@ -12,7 +12,7 @@ When possible, the data from multiple samples are overlayed on a single graph an
    
 ## Bug fixes
    
-
+- Fix for readr 1.2.0 (@jimhester, [#7](https://github.com/kassambara/fastqcr/pull/7))
 
 
 ## Minor changes
