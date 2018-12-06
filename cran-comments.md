@@ -12,6 +12,4 @@ There are currently no downstream dependencies for this package
 
 ## Resubmission
    
-This is a resubmission. In this version, 
-- I removed the VignetteBuilder field in the DESCRIPTION file.
-- I added R(>=3.1.2) in the Depends field
+This is a new version fastqcr 0.1.1 (see NEWS.md)
