@@ -18,7 +18,7 @@ reference:
       - qc_read
       - qc_read_collection
       - qc_plot
-      -qc_plot_collection
+      - qc_plot_collection
   - title: Building One-Sample and Multi-QC Reports
     contents:
       - qc_report

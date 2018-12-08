@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot FastQC Results — qc_plot • fastqcr</title>
+<title>Read a collection of FastQC data files — qc_read_collection • fastqcr</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Plot FastQC Results — qc_plot" />
+<meta property="og:title" content="Read a collection of FastQC data files — qc_read_collection" />
 
-<meta property="og:description" content="Plot FastQC data" />
+<meta property="og:description" content="A wrapper function around qc_read to read multiple FastQC data files at once." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,37 +115,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot FastQC Results</h1>
+    <h1>Read a collection of FastQC data files</h1>
     
-    <div class="hidden name"><code>qc_plot.Rd</code></div>
+    <div class="hidden name"><code>qc_read_collection.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot FastQC data</p>
+    <p>A wrapper function around <a href='qc_read.html'>qc_read</a> to read multiple FastQC data files at once.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>qc_plot</span>(<span class='no'>qc</span>, <span class='kw'>modules</span> <span class='kw'>=</span> <span class='st'>"all"</span>)
-
-<span class='co'># S3 method for qctable</span>
-<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>qc_read_collection</span>(<span class='no'>files</span>, <span class='no'>sample_names</span>, <span class='kw'>modules</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>qc</th>
-      <td><p>An object of class qc_read or a path to the sample zipped fastqc result file.</p></td>
+      <th>files</th>
+      <td><p>A <code>character</code> vector of paths to the files to be imported.</p></td>
+    </tr>
+    <tr>
+      <th>sample_names</th>
+      <td><p>A <code>character</code> vector of length equals that of the first argument <code>files</code></p></td>
     </tr>
     <tr>
       <th>modules</th>
-      <td><p>Character vector containing the names of fastqc modules for
-  which you want to import the data. Default is all. Allowed values include
+      <td><p>Character vector containing the names of FastQC modules for
+  which you want to import/inspect the data. Default is all. Allowed values include
   one or the combination of:</p><ul>
 <li><p>"Summary",</p></li>
 <li><p>"Basic Statistics",</p></li>
 <li><p>"Per base sequence quality",</p></li>
+<li><p>"Per tile sequence quality",</p></li>
 <li><p>"Per sequence quality scores",</p></li>
 <li><p>"Per base sequence content",</p></li>
 <li><p>"Per sequence GC content",</p></li>
@@ -159,36 +161,28 @@
 you can use modules = "GC content", instead of the full names modules = "Per sequence GC content".</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>an object of class qctable.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>other arguments.</p></td>
+      <th>verbose</th>
+      <td><p>logical value. If TRUE, print filename when reading.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns a list of ggplots containing the plot for specified modules..</p>
+    <p>A <code>list</code> of <code>tibbles</code> containing the data of specified modules form each file.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Demo file</span>
-<span class='no'>qc.file</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>"fastqc_results"</span>, <span class='st'>"S1_fastqc.zip"</span>,  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fastqcr"</span>)
-<span class='no'>qc.file</span></div><div class='output co'>#&gt; [1] "/Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S1_fastqc.zip"</div><div class='input'><span class='co'># Read all modules</span>
-<span class='no'>qc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='qc_read.html'>qc_read</a></span>(<span class='no'>qc.file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S1_fastqc.zip</span></div><div class='input'>
-<span class='co'># Plot per sequence GC content</span>
-<span class='fu'>qc_plot</span>(<span class='no'>qc</span>, <span class='st'>"Per sequence GC content"</span>)</div><div class='img'><img src='qc_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Per base sequence quality</span>
-<span class='fu'>qc_plot</span>(<span class='no'>qc</span>, <span class='st'>"Per base sequence quality"</span>)</div><div class='img'><img src='qc_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Per sequence quality scores</span>
-<span class='fu'>qc_plot</span>(<span class='no'>qc</span>, <span class='st'>"Per sequence quality scores"</span>)</div><div class='img'><img src='qc_plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Per base sequence content</span>
-<span class='fu'>qc_plot</span>(<span class='no'>qc</span>, <span class='st'>"Per base sequence content"</span>)</div><div class='img'><img src='qc_plot-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Sequence duplication levels</span>
-<span class='fu'>qc_plot</span>(<span class='no'>qc</span>, <span class='st'>"Sequence duplication levels"</span>)</div><div class='img'><img src='qc_plot-5.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># extract paths to the demo files</span>
+<span class='no'>qc.dir</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>"fastqc_results"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fastqcr"</span>)
+<span class='no'>qc.files</span> <span class='kw'>&lt;-</span> <span class='fu'>list.files</span>(<span class='no'>qc.dir</span>, <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
+<span class='co'># read all modules in all files</span>
+<span class='no'>qc</span> <span class='kw'>&lt;-</span> <span class='fu'>qc_read_collection</span>(<span class='no'>qc.files</span>, <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='fu'>paste</span>(<span class='st'>'S'</span>, <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>''</span>))</div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S1_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S2_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S3_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S4_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S5_fastqc.zip</span></div><div class='input'>
+
+<span class='co'># read a specified module in all files</span>
+<span class='no'>qc</span> <span class='kw'>&lt;-</span> <span class='fu'>qc_read_collection</span>(<span class='no'>qc.files</span>,
+    <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='fu'>paste</span>(<span class='st'>'S'</span>, <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>''</span>),
+    <span class='kw'>modules</span> <span class='kw'>=</span> <span class='st'>"Per base sequence quality"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S1_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S2_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S3_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S4_fastqc.zip</span></div><div class='output co'>#&gt; <span class='message'>Reading: /Users/kassambara/Documents/R/MyPackages/fastqcr/inst/fastqc_results/S5_fastqc.zip</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -200,6 +194,10 @@ you can use modules = "GC content", instead of the full names modules = "Per seq
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+Mahmoud Ahmed, <a href='mailto:mahmoud.s.fahmy@students.kasralainy.edu.eg'>mahmoud.s.fahmy@students.kasralainy.edu.eg</a>
 
   </div>
 </div>
