@@ -100,7 +100,7 @@ qc_read <- function(file, modules = "all", verbose = TRUE){
   res <- lapply(modules,
                 function(module, all.data){
                   index <- grep(module, all.data, ignore.case = TRUE)
-                  skip <- ifelse(module == "Sequence Duplication Levels", 2, 1)
+                  skip <- ifelse(module == "Sequence Duplication Levels", 3, 2)
                   if(length(index) >0) readr::read_tsv(all.data[index[1]], skip = skip)
                   else tibble::tibble()
                 },
@@ -110,7 +110,7 @@ qc_read <- function(file, modules = "all", verbose = TRUE){
   if("Sequence Duplication Levels" %in% modules){
     index <- grep("Sequence Duplication Levels", all.data, ignore.case = TRUE)
     if(length(index) >0)
-      res$total_deduplicated_percentage <- readr::read_tsv(all.data[index[1]], skip = 1, n_max = 0) %>%
+      res$total_deduplicated_percentage <- readr::read_tsv(all.data[index[1]], skip = 2, n_max = 0)%>%
         colnames(.) %>%
         .[2] %>%
         as.numeric() %>%
