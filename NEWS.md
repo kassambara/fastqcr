@@ -4,7 +4,9 @@
 
 
 ## Bug fixes
-
+   
+- Revert "Fix for readr 1.2.0": readr 1.3.0 changes the skip line behavior to match that of readr 1.1.1,
+the change in 1.2.0 was determined to be too disruptive (@jimhester, [#11](https://github.com/kassambara/fastqcr/pull/11)).
 
 # fastqcr 0.1.1
 
