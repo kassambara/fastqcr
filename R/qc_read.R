@@ -101,6 +101,7 @@ qc_read <- function(file, modules = "all", verbose = TRUE){
                 function(module, all.data){
                   index <- grep(module, all.data, ignore.case = TRUE)
                   skip <- ifelse(module == "Sequence Duplication Levels", 3, 2)
+
                   if(length(index) >0) {
                     readr::read_tsv(all.data[index[1]], skip = skip)
                   } else {
