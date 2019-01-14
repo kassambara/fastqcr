@@ -3,6 +3,7 @@
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 aes_string
 #' @importFrom ggplot2 geom_line
+#' @importFrom ggplot2 geom_bar
 #' @importFrom ggplot2 theme_minimal
 #' @importFrom ggplot2 coord_cartesian
 #' @importFrom ggplot2 labs
@@ -61,18 +62,18 @@ NULL
 #'
 #' @export
 qc_plot <- function(qc, modules = "all"){
-
+  
   if(inherits(qc, "character"))
     qc <- qc_read(qc)
   if(!inherits(qc, "qc_read"))
     stop("data should be an object of class qc_read")
-
+  
   . <- NULL
   modules <- .valid_fastqc_modules(modules) %>%
     tolower() %>%
     gsub(" ", "_", .)
-
-   res <- lapply(modules,
+  
+  res <- lapply(modules,
                 function(module, qc){
                   plot.func <- .plot_funct(module)
                   status <- .get_status(qc, gsub("_", " ", module))
@@ -80,7 +81,7 @@ qc_plot <- function(qc, modules = "all"){
                 },
                 qc
   )
-
+  
   names(res) <- modules
   if(length(res) == 1) res[[1]]
   else res
@@ -99,7 +100,7 @@ print.qctable <- function(x, ...){
 
 # Extrcat the plotting function according to the module
 .plot_funct <- function(module){
-
+  
   switch(module,
          per_sequence_gc_content = .plot_gc_content,
          per_base_sequence_quality = .plot_base_quality,
@@ -114,7 +115,7 @@ print.qctable <- function(x, ...){
          adapter_content = .plot_adapter_content,
          kmer_content = .plot_kmer_content,
          function(x){NULL}
-)
+  )
 }
 
 
@@ -141,7 +142,7 @@ print.qctable <- function(x, ...){
   .names <- names(qc)
   if(!("per_sequence_gc_content" %in% .names))
     return(NULL)
-
+  
   d <- qc$per_sequence_gc_content
   if(nrow(d) == 0) return(NULL)
   colnames(d) <- make.names(colnames(d))
@@ -158,22 +159,22 @@ print.qctable <- function(x, ...){
 .plot_N_content <- function(qc, ggtheme = theme_minimal(), status = NULL, ...){
   if(!("per_base_n_content" %in% names(qc)))
     return(NULL)
-
+  
   . <- NULL
-
+  
   d <- qc$per_base_n_content
   if(nrow(d) == 0) return(NULL)
   colnames(d) <- make.names(colnames(d))
   d$Base <- factor(d$Base, levels = d$Base)
-
+  
   # Select some breaks
   nlev <- nlevels(d$Base)
   breaks <- scales::extended_breaks()(1:nlev)[-1] %>% # index
     c(1, ., nlev) %>% # Add the minimum & the max
     d$Base[.] %>% # Values
     as.vector()
-
-
+  
+  
   ggplot(d, aes_string(x = "Base", y = "N.Count", group = 1))+
     geom_line() +
     scale_x_discrete(breaks = breaks)+
@@ -191,17 +192,16 @@ print.qctable <- function(x, ...){
 .plot_seq_length_distribution <- function(qc, ggtheme = theme_minimal(), status = NULL, ...){
   if(!("sequence_length_distribution" %in% names(qc)))
     return(NULL)
-
+  
   d <- qc$sequence_length_distribution
   if(nrow(d) == 0) return(NULL)
   
   # convert Length to factor
   d$Length <- factor(d$Length, levels = d$Length)
-
+  
   ggplot(d, aes_string(x = "Length", y = "Count"))+
-    # geom_line() +
-    geom_bar(stat = "identity", color = "blue") +
-    labs(title = "Sequence length distribution", x = "Sequence Length (pb)",
+    geom_bar(stat = "identity", fill = "blue") +
+    labs(title = "Sequence length distribution", x = "Sequence Length (bp)",
          y = "Count",
          subtitle = "Distribution of sequence lengths over all sequences",
          caption = paste0("Status: ", status))+
@@ -211,12 +211,12 @@ print.qctable <- function(x, ...){
 
 # Per base sequence quality
 .plot_base_quality <- function(qc, ggtheme = theme_minimal(), status = NULL, ...){
-
+  
   .names <- names(qc)
   if(!("per_base_sequence_quality" %in% .names))
     return(NULL)
   . <- NULL
-
+  
   d <- qc$per_base_sequence_quality
   if(nrow(d) == 0) return(NULL)
   
@@ -228,8 +228,8 @@ print.qctable <- function(x, ...){
     c(1, ., nlev) %>% # Add the minimum & the max
     d$Base[.] %>% # Values
     as.vector()
-
-
+  
+  
   ggplot()+
     geom_line(data = d, aes_string(x = "Base", y = "Median", group = 1)) +
     expand_limits(x = 0, y = 0)+
@@ -253,7 +253,7 @@ print.qctable <- function(x, ...){
   .names <- names(qc)
   if(!("per_sequence_quality_scores" %in% .names))
     return(NULL)
-
+  
   d <- qc$per_sequence_quality_scores
   if(nrow(d) == 0) return(NULL)
   
@@ -272,9 +272,9 @@ print.qctable <- function(x, ...){
   .names <- names(qc)
   if(!("per_base_sequence_content" %in% .names))
     return(NULL)
-
+  
   . <- NULL
-
+  
   Base <- NULL
   d <- qc$per_base_sequence_content
   if(nrow(d) == 0) return(NULL)
@@ -283,15 +283,15 @@ print.qctable <- function(x, ...){
   d <- d %>%
     tidyr::gather(key = "base_name", value = "Count", -Base)
   
-
+  
   # Select some breaks
   nlev <- nlevels(d$Base)
   breaks <- scales::extended_breaks()(1:nlev)[-1] %>% # index
     c(1, ., nlev) %>% # Add the minimum & the max
     d$Base[.] %>% # Values
     as.vector()
-
-
+  
+  
   ggplot(d, aes_string(x = "Base", y = "Count", group = "base_name", color = "base_name"))+
     geom_line() +
     scale_x_discrete(breaks = breaks)+
@@ -312,7 +312,7 @@ print.qctable <- function(x, ...){
   .names <- names(qc)
   if(!("per_base_sequence_content" %in% .names))
     return(NULL)
-
+  
   . <- NULL
   Duplication.Level <- NULL
   d <- qc$sequence_duplication_levels
@@ -321,15 +321,15 @@ print.qctable <- function(x, ...){
   d$Duplication.Level <- factor(d$Duplication.Level, levels = d$Duplication.Level)
   d <- d %>%
     tidyr::gather(key = "Dup", value = "pct", -Duplication.Level)
-
+  
   # Select some breaks
   nlev <- nlevels(d$Duplication.Level)
   breaks <- scales::extended_breaks()(1:nlev)[-1] %>% # index
     c(1, ., nlev) %>% # Add the minimum & the max
     d$Duplication.Level[.] %>% # Values
     as.vector()
-
-
+  
+  
   ggplot(d, aes_string(x = "Duplication.Level", y = "pct", group = "Dup", color = "Dup"))+
     geom_line() +
     # scale_x_discrete(breaks = breaks)+
@@ -349,9 +349,9 @@ print.qctable <- function(x, ...){
 .plot_overrepresented_sequences <- function(qc, status = NULL, ...){
   if(!("overrepresented_sequences" %in% names(qc)))
     return(NULL)
-
+  
   d <-  qc$overrepresented_sequences
-
+  
   if(nrow(d) == 0 )
     ggplot(d)+
     labs(title = "Overrepresented sequences")+
@@ -359,22 +359,22 @@ print.qctable <- function(x, ...){
                       size = 5, color = "steelblue")+
     ggplot2::theme_void()+
     theme(plot.caption = element_text(color = switch(status, PASS = "#00AFBB", WARN = "#E7B800", FAIL = "#FC4E07")))
-
+  
   else {
     d <- qc$overrepresented_sequences
     # d <- structure(d, class = c("qctable", class(d)))
     d
   }
-
+  
 }
 
 # Adapter Content
 .plot_adapter_content <- function(qc, status = NULL, ...){
   if(!("adapter_content" %in% names(qc)))
     return(NULL)
-
+  
   Position <- NULL
-
+  
   d <-  qc$adapter_content
   colnames(d) <- make.names(colnames(d))
   d <- d %>%
@@ -395,9 +395,9 @@ print.qctable <- function(x, ...){
 .plot_kmer_content <- function(qc, status = NULL, ...){
   if(!("kmer_content" %in% names(qc)))
     return(NULL)
-
+  
   d <-  qc$kmer_content
-
+  
   if(nrow(d) == 0 )
     ggplot(d)+
     labs(title = "Kmer content")+
@@ -405,25 +405,25 @@ print.qctable <- function(x, ...){
                       size = 5, color = "steelblue")+
     ggplot2::theme_void()+
     theme(plot.caption = element_text(color = switch(status, PASS = "#00AFBB", WARN = "#E7B800", FAIL = "#FC4E07")))
-
+  
   else {
     # d <- structure(d, class = c("qctable", class(d)))
     qc$kmer_content
   }
-
+  
 }
 
 
 .plot_tile_seq_quality <- function(qc, status = NULL, ...){
   if(!("per_tile_sequence_quality" %in% names(qc)))
     return(NULL)
-
+  
   d <-  qc$per_tile_sequence_quality
   if(nrow(d) == 0) return(NULL)
   
   d$Tile <- as.character(d$Tile)
   d$Base <- factor(d$Base, levels = d$Base)
-
+  
   ggplot(d, aes_string(x = "Base", y = "Tile", fill = "Mean"))+
     ggplot2::geom_tile() +
     labs(title = "Per tile sequence quality",
