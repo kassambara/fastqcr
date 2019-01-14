@@ -194,9 +194,13 @@ print.qctable <- function(x, ...){
 
   d <- qc$sequence_length_distribution
   if(nrow(d) == 0) return(NULL)
+  
+  # convert Length to factor
+  d$Length <- factor(d$Length, levels = d$Length)
 
   ggplot(d, aes_string(x = "Length", y = "Count"))+
-    geom_line() +
+    # geom_line() +
+    geom_bar(stat = "identity", color = "blue") +
     labs(title = "Sequence length distribution", x = "Sequence Length (pb)",
          y = "Count",
          subtitle = "Distribution of sequence lengths over all sequences",
