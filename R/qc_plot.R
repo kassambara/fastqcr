@@ -4,9 +4,11 @@
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 aes_string
 #' @importFrom ggplot2 geom_line
+#' @importFrom ggplot2 geom_point
 #' @importFrom ggplot2 geom_bar
 #' @importFrom ggplot2 theme_minimal
 #' @importFrom ggplot2 coord_cartesian
+#' @importFrom ggplot2 scale_x_continuous
 #' @importFrom ggplot2 labs
 #' @importFrom ggplot2 theme
 #' @importFrom ggplot2 expand_limits
@@ -150,7 +152,7 @@ print.qctable <- function(x, ...){
   if(nrow(d) == 0) return(NULL)
   colnames(d) <- make.names(colnames(d))
   ggplot(d, aes_string(x = "GC.Content", y = "Count"))+
-    geom_line(color = "red", size = 1) +
+    geom_line(color = "red", size = 0.7) +
     labs(title = "Per sequence GC content", x = "Mean GC Content (%)",
          caption = paste0("Status: ", status))+
     theme_minimal()+
@@ -183,7 +185,7 @@ print.qctable <- function(x, ...){
   
   
   ggplot(d, aes_string(x = "Base", y = "N.Count", group = 1))+
-    geom_line(color = "red3", size = 1) +
+    geom_line(color = "red3", size = .7) +
     scale_x_discrete(breaks = breaks)+
     coord_cartesian(ylim = c(0, 100))+
     labs(title = "Per base N content", x = "Position in read (bp)",
@@ -207,12 +209,12 @@ print.qctable <- function(x, ...){
   d <- rowid_to_column(d) %>% as.data.frame()
   
   # Select breaks
-  breaks <- seq.int(1, nrow(d), length.out = 6)
-  labels <- d$Base[breaks]
+  breaks <- as.integer(seq.int(1, nrow(d), length.out = 6))
+  labels <- d$Length[breaks]
   
   ggplot(d, aes(x = rowid, y = Count)) +
-    geom_line(color = "orange", size = 1) +
-    geom_point(color = "grey40", size = .5) +
+    geom_line(color = "red3", size = .7) +
+    # geom_point(color = "blue", size = .5) +
     scale_x_continuous(breaks = breaks,
                        labels = labels) + 
     labs(title = "Sequence length distribution", x = "Sequence Length (bp)",
@@ -263,7 +265,8 @@ print.qctable <- function(x, ...){
          subtitle = "Red: low quality zone",
          caption = paste0("Status: ", status))+
     theme_minimal() +
-    theme(plot.caption = element_text(color = switch(status, 
+    theme(plot.title = element_text(hjust = .5),
+          plot.caption = element_text(color = switch(status, 
                                                      PASS = "#00AFBB", 
                                                      WARN = "#E7B800", 
                                                      FAIL = "#FC4E07")))
@@ -280,7 +283,7 @@ print.qctable <- function(x, ...){
   if(nrow(d) == 0) return(NULL)
   
   ggplot(d, aes_string(x = "Quality", y = "Count"))+
-    geom_line(color = "red3", size = 1) +
+    geom_line(color = "red3", size = 0.7) +
     labs(title = "Per sequence quality scores",
          subtitle = "Quality score distribution over all sequences",
          x = "Mean Sequence Quality (Phred Score)",
@@ -363,7 +366,8 @@ print.qctable <- function(x, ...){
     geom_line() +
     # scale_x_discrete(breaks = breaks)+
     labs(title = "Sequence Duplication Levels",
-         subtitle = paste0("Percentage of distinct reads: ", qc$total_deduplicated_percentage, "%"),
+         subtitle = paste0("Percentage of distinct reads: ", 
+                           qc$total_deduplicated_percentage, "%"),
          x = "Sequence Duplication Level", y = "Percentage",
          caption = paste0("Status: ", status),
          color = "")+
@@ -387,7 +391,8 @@ print.qctable <- function(x, ...){
   if(nrow(d) == 0 )
     ggplot(d)+
     labs(title = "Overrepresented sequences")+
-    ggplot2::annotate("text", x = 0.5, y = 0.5, label = "No overrepresented sequences",
+    ggplot2::annotate("text", x = 0.5, y = 0.5, 
+                      label = "No overrepresented sequences",
                       size = 5, color = "steelblue")+
     ggplot2::theme_void()+
     theme(plot.title = element_text(hjust = .5),
