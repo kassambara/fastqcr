@@ -203,10 +203,18 @@ print.qctable <- function(x, ...){
     return(NULL)
   
   d <- qc$sequence_length_distribution
-  if(nrow(d) == 0) return(NULL)
+  if(nrow(d) == 0) {
+    return(NULL)
+  } else if(nrow(d) == 1) {
+    d <- tibble::add_row(d, .before = 1,
+                    Length = d$Length - 1,
+                    Count = 0) %>%
+      tibble::add_row(Length = d$Length + 1,
+                      Count = 0)
+  }
   
   # add x-axis
-  d <- rowid_to_column(d) %>% as.data.frame()
+  d <- tibble::rowid_to_column(d) %>% as.data.frame()
   
   # Select breaks
   breaks <- as.integer(seq.int(1, nrow(d), length.out = 6))
