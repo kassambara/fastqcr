@@ -4,7 +4,8 @@
 \alias{qc_read_collection}
 \title{Read a collection of FastQC data files}
 \usage{
-qc_read_collection(files, sample_names, modules = "all", verbose = TRUE)
+qc_read_collection(files, sample_names, modules = "all",
+  verbose = TRUE)
 }
 \arguments{
 \item{files}{A \code{character} vector of paths to the files to be imported.}

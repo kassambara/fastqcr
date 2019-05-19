@@ -17,9 +17,9 @@ knitr::opts_chunk$set(
    
    
 [![Build Status](https://api.travis-ci.org/kassambara/fastqcr.png)](https://travis-ci.org/kassambara/fastqcr)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/fastqcr)](https://cran.r-project.org/package=fastqcr)
-[![Downloads](http://cranlogs.r-pkg.org/badges/fastqcr)](https://cran.r-project.org/package=fastqcr)
-[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/fastqcr?color=orange)](http://cranlogs.r-pkg.org/badges/grand-total/fastqcr)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/fastqcr)](https://cran.r-project.org/package=fastqcr)
+[![Downloads](https://cranlogs.r-pkg.org/badges/fastqcr)](https://cran.r-project.org/package=fastqcr)
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/fastqcr?color=orange)](https://cranlogs.r-pkg.org/badges/grand-total/fastqcr)
       
       
 <br/>  

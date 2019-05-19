@@ -1,8 +1,8 @@
 Package: fastqcr
 Type: Package
 Title: Quality Control of Sequencing Data
-Version: 0.1.1.999
-Date: 2018-12-06
+Version: 0.1.2
+Date: 2018-12-23
 Authors@R: c(
     person("Alboukadel", "Kassambara", role = c("aut", "cre"), email = "alboukadel.kassambara@gmail.com")
     )
@@ -37,7 +37,7 @@ Suggests:
     knitr
 URL: http://www.sthda.com/english/rpkgs/fastqcr/
 BugReports: https://github.com/kassambara/fastqcr/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Collate: 
     'utilities.R'
     'fastqc.R'

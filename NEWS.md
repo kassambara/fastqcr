@@ -1,7 +1,4 @@
-# fastqcr 0.1.1.999
-
-## New features
-
+# fastqcr 0.1.2
 
 ## Bug fixes
    

@@ -12,4 +12,4 @@ There are currently no downstream dependencies for this package
 
 ## Resubmission
    
-This is a new version fastqcr 0.1.1 (see NEWS.md)
+This is a new version fastqcr 0.1.2 (see NEWS.md)

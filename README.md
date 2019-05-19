@@ -1,10 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://api.travis-ci.org/kassambara/fastqcr.png)](https://travis-ci.org/kassambara/fastqcr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/fastqcr)](https://cran.r-project.org/package=fastqcr) [![Downloads](http://cranlogs.r-pkg.org/badges/fastqcr)](https://cran.r-project.org/package=fastqcr) [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/fastqcr?color=orange)](http://cranlogs.r-pkg.org/badges/grand-total/fastqcr)
+[![Build Status](https://api.travis-ci.org/kassambara/fastqcr.png)](https://travis-ci.org/kassambara/fastqcr) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/fastqcr)](https://cran.r-project.org/package=fastqcr) [![Downloads](https://cranlogs.r-pkg.org/badges/fastqcr)](https://cran.r-project.org/package=fastqcr) [![Total Downloads](https://cranlogs.r-pkg.org/badges/grand-total/fastqcr?color=orange)](https://cranlogs.r-pkg.org/badges/grand-total/fastqcr)
 
 <br/>
 
-
+<style>
+.error,.notice,.warning,.success,.question{height:auto;padding:10px 10px 10px 40px;margin:5px auto 15px;line-height:20px;border:1px solid #FFF;border-radius:4px;position:relative;display:block;text-align:left}.question{background-color:#DAEEF8;border-color:#BDE9F2}.notice{background-color:#F0F0F0;border-color:#E2E2E2}.warning{background-color:#FDF9E4;border-color:#FBECCD}.error{background-color:#F3DFDF;border-color:#ECCDD2}.success{background-color:#E0F1D9;border-color:#D7EAC7}.block,.medium-block,.small-block{border:1px solid #CCC;border-top:2px solid #366393;border-bottom:1px solid #99B1CB;background:#F2F8FF;padding:10px}.block{width:auto;margin-top:10px;margin-bottom:10px}img{background-color:#fff;background-color:#FFF;border-radius:3px;border:1px solid #CCC;box-shadow:2px 2px 12px -5px #999;margin:0 5px;margin-bottom:5px;padding:5px;text-align:center}
+</style>
 fastqcr: Quality Control of Sequencing Data
 ===========================================
 
@@ -207,18 +209,18 @@ qc
 
 The aggregated report looks like this:
 
-| sample | module                       | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
-|:-------|:-----------------------------|:-------|:---------|:-----------|-------:|--------:|
-| S4     | Per sequence GC content      | FAIL   | 67255341 | 35-76      |      49|    19.89|
-| S2     | Sequence Length Distribution | WARN   | 50299587 | 35-76      |      48|    15.70|
-| S5     | Sequence Length Distribution | WARN   | 65011962 | 35-76      |      48|    18.15|
-| S3     | Per base N content           | PASS   | 67255341 | 35-76      |      49|    22.14|
-| S1     | Kmer Content                 | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S2     | Basic Statistics             | PASS   | 50299587 | 35-76      |      48|    15.70|
-| S4     | Overrepresented sequences    | PASS   | 67255341 | 35-76      |      49|    19.89|
-| S3     | Per sequence GC content      | FAIL   | 67255341 | 35-76      |      49|    22.14|
-| S1     | Overrepresented sequences    | PASS   | 50299587 | 35-76      |      48|    17.24|
-| S3     | Basic Statistics             | PASS   | 67255341 | 35-76      |      49|    22.14|
+| sample | module                      | status | tot.seq  | seq.length |  pct.gc|  pct.dup|
+|:-------|:----------------------------|:-------|:---------|:-----------|-------:|--------:|
+| S3     | Per base sequence content   | FAIL   | 67255341 | 35-76      |      49|    22.14|
+| S5     | Per sequence GC content     | WARN   | 65011962 | 35-76      |      48|    18.15|
+| S3     | Overrepresented sequences   | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S3     | Per tile sequence quality   | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S4     | Per sequence quality scores | PASS   | 67255341 | 35-76      |      49|    19.89|
+| S1     | Per sequence GC content     | WARN   | 50299587 | 35-76      |      48|    17.24|
+| S5     | Kmer Content                | PASS   | 65011962 | 35-76      |      48|    18.15|
+| S3     | Sequence Duplication Levels | PASS   | 67255341 | 35-76      |      49|    22.14|
+| S1     | Basic Statistics            | PASS   | 50299587 | 35-76      |      48|    17.24|
+| S1     | Overrepresented sequences   | PASS   | 50299587 | 35-76      |      48|    17.24|
 
 Column names:
 
@@ -242,24 +244,24 @@ qc %>%
   select(sample, module, status) %>%    
   filter(status %in% c("WARN", "FAIL")) %>%
   arrange(sample)
-# # A tibble: 15 × 3
-#    sample                       module status
-#     <chr>                        <chr>  <chr>
-# 1      S1    Per base sequence content   FAIL
-# 2      S1      Per sequence GC content   WARN
-# 3      S1 Sequence Length Distribution   WARN
-# 4      S2    Per base sequence content   FAIL
-# 5      S2      Per sequence GC content   WARN
-# 6      S2 Sequence Length Distribution   WARN
-# 7      S3    Per base sequence content   FAIL
-# 8      S3      Per sequence GC content   FAIL
-# 9      S3 Sequence Length Distribution   WARN
-# 10     S4    Per base sequence content   FAIL
-# 11     S4      Per sequence GC content   FAIL
-# 12     S4 Sequence Length Distribution   WARN
-# 13     S5    Per base sequence content   FAIL
-# 14     S5      Per sequence GC content   WARN
-# 15     S5 Sequence Length Distribution   WARN
+# # A tibble: 15 x 3
+#    sample module                       status
+#    <chr>  <chr>                        <chr> 
+#  1 S1     Per base sequence content    FAIL  
+#  2 S1     Per sequence GC content      WARN  
+#  3 S1     Sequence Length Distribution WARN  
+#  4 S2     Per base sequence content    FAIL  
+#  5 S2     Per sequence GC content      WARN  
+#  6 S2     Sequence Length Distribution WARN  
+#  7 S3     Per base sequence content    FAIL  
+#  8 S3     Per sequence GC content      FAIL  
+#  9 S3     Sequence Length Distribution WARN  
+# 10 S4     Per base sequence content    FAIL  
+# 11 S4     Per sequence GC content      FAIL  
+# 12 S4     Sequence Length Distribution WARN  
+# 13 S5     Per base sequence content    FAIL  
+# 14 S5     Per sequence GC content      WARN  
+# 15 S5     Sequence Length Distribution WARN
 ```
 
 <p>
@@ -279,24 +281,22 @@ We start by presenting a summary and general statistics of the aggregated data.
 ``` r
 # Summary of qc
 summary(qc)
-# Source: local data frame [12 x 7]
-# Groups: module [?]
-# 
-#                          module nb_samples nb_fail nb_pass nb_warn
-#                           <chr>      <dbl>   <dbl>   <dbl>   <dbl>
-# 1               Adapter Content          5       0       5       0
-# 2              Basic Statistics          5       0       5       0
-# 3                  Kmer Content          5       0       5       0
-# 4     Overrepresented sequences          5       0       5       0
-# 5            Per base N content          5       0       5       0
-# 6     Per base sequence content          5       5       0       0
-# 7     Per base sequence quality          5       0       5       0
-# 8       Per sequence GC content          5       2       0       3
-# 9   Per sequence quality scores          5       0       5       0
-# 10    Per tile sequence quality          5       0       5       0
-# 11  Sequence Duplication Levels          5       0       5       0
-# 12 Sequence Length Distribution          5       0       0       5
-# # ... with 2 more variables: failed <chr>, warned <chr>
+# # A tibble: 12 x 7
+# # Groups:   module [?]
+#    module         nb_samples nb_fail nb_pass nb_warn failed     warned    
+#    <chr>               <dbl>   <dbl>   <dbl>   <dbl> <chr>      <chr>     
+#  1 Adapter Conte…          5       0       5       0 <NA>       <NA>      
+#  2 Basic Statist…          5       0       5       0 <NA>       <NA>      
+#  3 Kmer Content            5       0       5       0 <NA>       <NA>      
+#  4 Overrepresent…          5       0       5       0 <NA>       <NA>      
+#  5 Per base N co…          5       0       5       0 <NA>       <NA>      
+#  6 Per base sequ…          5       5       0       0 S1, S2, S… <NA>      
+#  7 Per base sequ…          5       0       5       0 <NA>       <NA>      
+#  8 Per sequence …          5       2       0       3 S3, S4     S1, S2, S5
+#  9 Per sequence …          5       0       5       0 <NA>       <NA>      
+# 10 Per tile sequ…          5       0       5       0 <NA>       <NA>      
+# 11 Sequence Dupl…          5       0       5       0 <NA>       <NA>      
+# 12 Sequence Leng…          5       0       0       5 <NA>       S1, S2, S…
 ```
 
 Column names:
@@ -317,14 +317,14 @@ The table shows, for each FastQC module, the number and the name of samples that
 
 ``` r
 qc_stats(qc)
-# # A tibble: 5 × 5
-#   sample pct.dup pct.gc  tot.seq seq.length
-#    <chr>   <dbl>  <dbl>    <chr>      <chr>
-# 1     S1   17.24     48 50299587      35-76
-# 2     S2   15.70     48 50299587      35-76
-# 3     S3   22.14     49 67255341      35-76
-# 4     S4   19.89     49 67255341      35-76
-# 5     S5   18.15     48 65011962      35-76
+# # A tibble: 5 x 5
+#   sample pct.dup pct.gc tot.seq  seq.length
+#   <chr>    <dbl>  <dbl> <chr>    <chr>     
+# 1 S1        17.2     48 50299587 35-76     
+# 2 S2        15.7     48 50299587 35-76     
+# 3 S3        22.1     49 67255341 35-76     
+# 4 S4        19.9     49 67255341 35-76     
+# 5 S5        18.2     48 65011962 35-76
 ```
 
 Column names:
@@ -371,11 +371,11 @@ The format and the interpretation of the outputs depend on the additional argume
 ``` r
 # See which module failed in the most samples
 qc_fails(qc, "module")
-# # A tibble: 2 × 3
-#                      module nb_problems             sample
-#                       <chr>       <int>              <chr>
+# # A tibble: 2 x 3
+#   module                    nb_problems sample            
+#   <chr>                           <int> <chr>             
 # 1 Per base sequence content           5 S1, S2, S3, S4, S5
-# 2   Per sequence GC content           2             S3, S4
+# 2 Per sequence GC content             2 S3, S4
 ```
 
 <p>
@@ -387,11 +387,11 @@ For each module, the number of problems (failures) and the name of samples, that
 ``` r
 # See which module warned in the most samples
 qc_warns(qc, "module")
-# # A tibble: 2 × 3
-#                         module nb_problems             sample
-#                          <chr>       <int>              <chr>
+# # A tibble: 2 x 3
+#   module                       nb_problems sample            
+#   <chr>                              <int> <chr>             
 # 1 Sequence Length Distribution           5 S1, S2, S3, S4, S5
-# 2      Per sequence GC content           3         S1, S2, S5
+# 2 Per sequence GC content                3 S1, S2, S5
 ```
 
 -   **Modules that failed or warned**: Union of qc\_fails() and qc\_warns()
@@ -399,11 +399,11 @@ qc_warns(qc, "module")
 ``` r
 # See which modules failed or warned.
 qc_problems(qc, "module")
-# # A tibble: 3 × 3
-#                         module nb_problems             sample
-#                          <chr>       <int>              <chr>
-# 1    Per base sequence content           5 S1, S2, S3, S4, S5
-# 2      Per sequence GC content           5 S1, S2, S3, S4, S5
+# # A tibble: 3 x 3
+#   module                       nb_problems sample            
+#   <chr>                              <int> <chr>             
+# 1 Per base sequence content              5 S1, S2, S3, S4, S5
+# 2 Per sequence GC content                5 S1, S2, S3, S4, S5
 # 3 Sequence Length Distribution           5 S1, S2, S3, S4, S5
 ```
 
@@ -411,24 +411,24 @@ The output above is in a compact format. For a stretched format, type this:
 
 ``` r
 qc_problems(qc, "module", compact = FALSE)
-# # A tibble: 15 × 4
-#                          module nb_problems sample status
-#                           <chr>       <int>  <chr>  <chr>
-# 1     Per base sequence content           5     S1   FAIL
-# 2     Per base sequence content           5     S2   FAIL
-# 3     Per base sequence content           5     S3   FAIL
-# 4     Per base sequence content           5     S4   FAIL
-# 5     Per base sequence content           5     S5   FAIL
-# 6       Per sequence GC content           5     S3   FAIL
-# 7       Per sequence GC content           5     S4   FAIL
-# 8       Per sequence GC content           5     S1   WARN
-# 9       Per sequence GC content           5     S2   WARN
-# 10      Per sequence GC content           5     S5   WARN
-# 11 Sequence Length Distribution           5     S1   WARN
-# 12 Sequence Length Distribution           5     S2   WARN
-# 13 Sequence Length Distribution           5     S3   WARN
-# 14 Sequence Length Distribution           5     S4   WARN
-# 15 Sequence Length Distribution           5     S5   WARN
+# # A tibble: 15 x 4
+#    module                       nb_problems sample status
+#    <chr>                              <int> <chr>  <chr> 
+#  1 Per base sequence content              5 S1     FAIL  
+#  2 Per base sequence content              5 S2     FAIL  
+#  3 Per base sequence content              5 S3     FAIL  
+#  4 Per base sequence content              5 S4     FAIL  
+#  5 Per base sequence content              5 S5     FAIL  
+#  6 Per sequence GC content                5 S3     FAIL  
+#  7 Per sequence GC content                5 S4     FAIL  
+#  8 Per sequence GC content                5 S1     WARN  
+#  9 Per sequence GC content                5 S2     WARN  
+# 10 Per sequence GC content                5 S5     WARN  
+# 11 Sequence Length Distribution           5 S1     WARN  
+# 12 Sequence Length Distribution           5 S2     WARN  
+# 13 Sequence Length Distribution           5 S3     WARN  
+# 14 Sequence Length Distribution           5 S4     WARN  
+# 15 Sequence Length Distribution           5 S5     WARN
 ```
 
 <p>
@@ -439,14 +439,14 @@ It's also possible to display problems for one or more specified modules. For ex
 
 ``` r
 qc_problems(qc, "module",  name = "Per sequence GC content")
-# # A tibble: 5 × 4
-#                    module nb_problems sample status
-#                     <chr>       <int>  <chr>  <chr>
-# 1 Per sequence GC content           5     S3   FAIL
-# 2 Per sequence GC content           5     S4   FAIL
-# 3 Per sequence GC content           5     S1   WARN
-# 4 Per sequence GC content           5     S2   WARN
-# 5 Per sequence GC content           5     S5   WARN
+# # A tibble: 5 x 4
+#   module                  nb_problems sample status
+#   <chr>                         <int> <chr>  <chr> 
+# 1 Per sequence GC content           5 S3     FAIL  
+# 2 Per sequence GC content           5 S4     FAIL  
+# 3 Per sequence GC content           5 S1     WARN  
+# 4 Per sequence GC content           5 S2     WARN  
+# 5 Per sequence GC content           5 S5     WARN
 ```
 
 <p>
@@ -464,14 +464,14 @@ qc_problems(qc, "module",  name = "GC content")
 ``` r
 # See which samples had one or more failed modules
 qc_fails(qc, "sample")
-# # A tibble: 5 × 3
-#   sample nb_problems                                             module
-#    <chr>       <int>                                              <chr>
-# 1     S3           2 Per base sequence content, Per sequence GC content
-# 2     S4           2 Per base sequence content, Per sequence GC content
-# 3     S1           1                          Per base sequence content
-# 4     S2           1                          Per base sequence content
-# 5     S5           1                          Per base sequence content
+# # A tibble: 5 x 3
+#   sample nb_problems module                                            
+#   <chr>        <int> <chr>                                             
+# 1 S3               2 Per base sequence content, Per sequence GC content
+# 2 S4               2 Per base sequence content, Per sequence GC content
+# 3 S1               1 Per base sequence content                         
+# 4 S2               1 Per base sequence content                         
+# 5 S5               1 Per base sequence content
 ```
 
 <p>
@@ -483,36 +483,36 @@ For each sample, the number of problems (failures) and the name of modules, that
 ``` r
 # See which samples had one or more module with failure or warning
 qc_problems(qc, "sample", compact = FALSE)
-# # A tibble: 15 × 4
-#    sample nb_problems                       module status
-#     <chr>       <int>                        <chr>  <chr>
-# 1      S1           3    Per base sequence content   FAIL
-# 2      S1           3      Per sequence GC content   WARN
-# 3      S1           3 Sequence Length Distribution   WARN
-# 4      S2           3    Per base sequence content   FAIL
-# 5      S2           3      Per sequence GC content   WARN
-# 6      S2           3 Sequence Length Distribution   WARN
-# 7      S3           3    Per base sequence content   FAIL
-# 8      S3           3      Per sequence GC content   FAIL
-# 9      S3           3 Sequence Length Distribution   WARN
-# 10     S4           3    Per base sequence content   FAIL
-# 11     S4           3      Per sequence GC content   FAIL
-# 12     S4           3 Sequence Length Distribution   WARN
-# 13     S5           3    Per base sequence content   FAIL
-# 14     S5           3      Per sequence GC content   WARN
-# 15     S5           3 Sequence Length Distribution   WARN
+# # A tibble: 15 x 4
+#    sample nb_problems module                       status
+#    <chr>        <int> <chr>                        <chr> 
+#  1 S1               3 Per base sequence content    FAIL  
+#  2 S1               3 Per sequence GC content      WARN  
+#  3 S1               3 Sequence Length Distribution WARN  
+#  4 S2               3 Per base sequence content    FAIL  
+#  5 S2               3 Per sequence GC content      WARN  
+#  6 S2               3 Sequence Length Distribution WARN  
+#  7 S3               3 Per base sequence content    FAIL  
+#  8 S3               3 Per sequence GC content      FAIL  
+#  9 S3               3 Sequence Length Distribution WARN  
+# 10 S4               3 Per base sequence content    FAIL  
+# 11 S4               3 Per sequence GC content      FAIL  
+# 12 S4               3 Sequence Length Distribution WARN  
+# 13 S5               3 Per base sequence content    FAIL  
+# 14 S5               3 Per sequence GC content      WARN  
+# 15 S5               3 Sequence Length Distribution WARN
 ```
 
 To specify the name of a sample of interest, type this:
 
 ``` r
 qc_problems(qc, "sample", name = "S1")
-# # A tibble: 3 × 4
-#   sample nb_problems                       module status
-#    <chr>       <int>                        <chr>  <chr>
-# 1     S1           3    Per base sequence content   FAIL
-# 2     S1           3      Per sequence GC content   WARN
-# 3     S1           3 Sequence Length Distribution   WARN
+# # A tibble: 3 x 4
+#   sample nb_problems module                       status
+#   <chr>        <int> <chr>                        <chr> 
+# 1 S1               3 Per base sequence content    FAIL  
+# 2 S1               3 Per sequence GC content      WARN  
+# 3 S1               3 Sequence Length Distribution WARN
 ```
 
 Building an HTML Report
