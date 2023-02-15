@@ -140,6 +140,6 @@ qc_problems <- function(object,
   else
     left_join(problems, nb_problems, by = element) %>%
     dplyr::arrange_("desc(nb_problems)", element,  "status") %>%
-    dplyr::select_(element, "nb_problems", not_element, "status")
+    dplyr::select(element, dplyr::all_of(c("nb_problems", not_element, "status")))
 }
 

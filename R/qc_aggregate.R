@@ -82,8 +82,10 @@ qc_aggregate <- function(qc.dir = ".", progressbar = TRUE)
     res.summary <- rbind(res.summary, .summary)
     if(progressbar) utils::setTxtProgressBar(pb, i)
   }
-  res.summary <- dplyr::select_(res.summary, "sample", "module", "status",
-                                "tot.seq", "seq.length", "pct.gc", "pct.dup")
+  res.summary <- dplyr::select(
+    res.summary, 
+    dplyr::all_of(c("sample", "module", "status","tot.seq", "seq.length", "pct.gc", "pct.dup"))
+    )
   res.summary$sample <-gsub(".fastq.gz|.fastq", "", res.summary$sample,
                             ignore.case = TRUE)
   

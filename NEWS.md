@@ -2,6 +2,10 @@
 
 ## Major changes
    
+## Minor changes
+
+- Using `select()` instead of `select_()` in `qc_aggregate()`and `qc_problems()` (#24)
+
 ## Bug fixes
 
 # fastqcr 0.1.2
