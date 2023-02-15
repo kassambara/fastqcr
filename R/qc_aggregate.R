@@ -119,12 +119,12 @@ summary.qc_aggregate <- function(object, ...){
   failed <- qc_fails(object, element = "module") %>%
     select(module, sample) %>%
     dplyr::rename(failed = sample)
-  if(nrow(failed) >0) res <- left_join(res, failed, by = "module", fill = "---")
+  if(nrow(failed) >0) res <- left_join(res, failed, by = "module")
   # Add sample names that warn
   warned <- qc_warns(object, element = "module") %>%
     select(module, sample) %>%
     dplyr::rename(warned = sample)
-  if(nrow(warned) >0) res <- left_join(res, warned, by = "module", fill = "---")
+  if(nrow(warned) >0) res <- left_join(res, warned, by = "module")
   res
 }
 
