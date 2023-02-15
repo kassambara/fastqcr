@@ -4,9 +4,11 @@
    
 ## Minor changes
 
-- Using `select()` instead of `select_()` in `qc_aggregate()`and `qc_problems()` (#24)
+- Using `select()` instead of `select_()` in `qc_aggregate()` and `qc_problems()` (#24)
 
 ## Bug fixes
+
+- Remove extra args in `left_join()` from `qc_aggregate()` function (#23)
 
 # fastqcr 0.1.2
 
