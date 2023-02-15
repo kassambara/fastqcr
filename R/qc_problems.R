@@ -4,7 +4,6 @@ NULL
 #' 
 #' @description Inspect problems in aggregated FastQC reports.
 #' @param object an object of class qc_aggregate.
-#' @inheritParams qc_read
 #' @return
 #' \itemize{
 #'    \item \strong{qc_problems(), qc_fails(), qc_warns()}: returns a tibble (data frame) containing samples
@@ -124,7 +123,7 @@ qc_problems <- function(object,
   }
   
   nb_problems <- problems %>%
-    dplyr::group_by_(element) %>%
+    dplyr::group_by(!!!syms(element)) %>%
     dplyr::summarise(nb_problems = n()) %>%
     dplyr::arrange(desc(nb_problems))
   
@@ -139,7 +138,7 @@ qc_problems <- function(object,
     left_join(nb_problems, modules_with_problem, by = element)
   else
     left_join(problems, nb_problems, by = element) %>%
-    dplyr::arrange_("desc(nb_problems)", element,  "status") %>%
+    dplyr::arrange(desc(nb_problems), !!!syms(c(element,  "status"))) %>%
     dplyr::select(element, dplyr::all_of(c("nb_problems", not_element, "status")))
 }
 

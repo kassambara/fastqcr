@@ -4,7 +4,8 @@
    
 ## Minor changes
 
-- Using `select()` instead of `select_()` in `qc_aggregate()` and `qc_problems()` (#24)
+- Using `select()` in place of the deprecated `select_()` function in `qc_aggregate()` and `qc_problems()` (#24)
+- Using `arrange()` and `group_by()` in place of the deprecated `arrange_()` and `group_by()_` functions in `qc_problems()`
 
 ## Bug fixes
 

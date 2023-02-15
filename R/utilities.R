@@ -1,5 +1,7 @@
 #' @importFrom magrittr %>%
 #' @import dplyr
+#' @importFrom rlang syms
+#' @importFrom rlang !!!
 
 # Create a directory
 .create_dir <- function(path){
