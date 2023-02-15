@@ -37,7 +37,7 @@ Suggests:
     knitr
 URL: http://www.sthda.com/english/rpkgs/fastqcr/
 BugReports: https://github.com/kassambara/fastqcr/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.2.3
 Collate: 
     'utilities.R'
     'fastqc.R'

@@ -51,11 +51,11 @@ Aggregate multiple FastQC reports into a data frame.
 }
 \section{Functions}{
 \itemize{
-\item \code{qc_aggregate}: Aggregate FastQC Reports for Multiple Samples
+\item \code{qc_aggregate()}: Aggregate FastQC Reports for Multiple Samples
 
-\item \code{qc_stats}: Creates general statistics of fastqc reports.
+\item \code{qc_stats()}: Creates general statistics of fastqc reports.
+
 }}
-
 \examples{
 # Demo QC dir
 qc.dir <- system.file("fastqc_results", package = "fastqcr")

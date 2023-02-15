@@ -4,8 +4,14 @@
 \alias{qc_report}
 \title{Build a QC Report}
 \usage{
-qc_report(qc.path, result.file, experiment = NULL, interpret = FALSE,
-  template = NULL, preview = TRUE)
+qc_report(
+  qc.path,
+  result.file,
+  experiment = NULL,
+  interpret = FALSE,
+  template = NULL,
+  preview = TRUE
+)
 }
 \arguments{
 \item{qc.path}{path to the FastQC reports. Allowed values include: \itemize{ 

@@ -10,8 +10,13 @@ qc_fails(object, element = c("sample", "module"), compact = TRUE)
 
 qc_warns(object, element = c("sample", "module"), compact = TRUE)
 
-qc_problems(object, element = c("sample", "module"), name = NULL,
-  status = c("FAIL", "WARN"), compact = TRUE)
+qc_problems(
+  object,
+  element = c("sample", "module"),
+  name = NULL,
+  status = c("FAIL", "WARN"),
+  compact = TRUE
+)
 }
 \arguments{
 \item{object}{an object of class qc_aggregate.}
@@ -57,16 +62,16 @@ Inspect problems in aggregated FastQC reports.
 }
 \section{Functions}{
 \itemize{
-\item \code{qc_fails}: Displays which samples had one or more failed modules. Use
+\item \code{qc_fails()}: Displays which samples had one or more failed modules. Use
 qc_fails(qc, "module") to see which modules failed in the most samples.
 
-\item \code{qc_warns}: Displays which samples had one or more warned modules. Use
+\item \code{qc_warns()}: Displays which samples had one or more warned modules. Use
 qc_warns(qc, "module") to see which modules warned in the most samples.
 
-\item \code{qc_problems}: Union of \code{qc_fails()} and \code{qc_warns()}. 
+\item \code{qc_problems()}: Union of \code{qc_fails()} and \code{qc_warns()}. 
 Display which samples or modules that failed or warned.
-}}
 
+}}
 \examples{
 # Demo QC dir
 qc.dir <- system.file("fastqc_results", package = "fastqcr")

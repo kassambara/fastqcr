@@ -4,8 +4,12 @@
 \alias{fastqc}
 \title{Run FastQC Tool}
 \usage{
-fastqc(fq.dir = getwd(), qc.dir = NULL, threads = 4,
-  fastqc.path = "~/bin/FastQC/fastqc")
+fastqc(
+  fq.dir = getwd(),
+  qc.dir = NULL,
+  threads = 4,
+  fastqc.path = "~/bin/FastQC/fastqc"
+)
 }
 \arguments{
 \item{fq.dir}{path to the directory containing fastq files. Default is the
