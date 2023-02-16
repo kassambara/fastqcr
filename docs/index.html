@@ -102,12 +102,12 @@
 <p>It produces, for each sample, an html report and a ‘zip’ file, which contains a file called fastqc_data.txt and summary.txt.</p>
 <p>If you have hundreds of samples, you’re not going to open up each HTML page. You need some way of looking at these data in aggregate.</p>
 <p>The <strong>fastqcr</strong> R package provides helper functions to easily and automatically parse, aggregate and analyze FastQC reports for large numbers of samples.</p>
-<p>Additionally, the <strong>fastqcr</strong> package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: <a href="http://www.sthda.com/english/rpkgs/fastqcr/" class="external-link uri">http://www.sthda.com/english/rpkgs/fastqcr/</a>.</p>
+<p>Additionally, the <strong>fastqcr</strong> package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: <a href="https://rpkgs.datanovia.com/fastqcr/" class="external-link uri">https://rpkgs.datanovia.com/fastqcr/</a>.</p>
 <p>Examples of QC reports, generated automatically by the <strong>fastqcr</strong> R package, include:</p>
 <ul>
-<li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html" class="external-link">Multi-QC report for multiple samples</a></li>
-<li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html" class="external-link">One sample QC report (+ interpretation)</a></li>
-<li><a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html" class="external-link">One sample QC report (no interpretation)</a></li>
+<li><a href="https://rpkgs.datanovia.com/fastqcr/qc-reports/fastqcr-multi-qc-report.html" class="external-link">Multi-QC report for multiple samples</a></li>
+<li><a href="https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-interpretation.html" class="external-link">One sample QC report (+ interpretation)</a></li>
+<li><a href="https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-without-interpretation.html" class="external-link">One sample QC report (no interpretation)</a></li>
 </ul>
 <div class="figure">
 <img src="tools/fastqcr.png" alt=""><p class="caption">fastqcr logo</p>
@@ -116,21 +116,21 @@
 <h2 id="installation-and-loading">Installation and loading<a class="anchor" aria-label="anchor" href="#installation-and-loading"></a>
 </h2>
 <ul><li>fastqcr can be installed from <a href="https://cran.r-project.org/package=fastqcr" class="external-link">CRAN</a> as follow:</li></ul>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"fastqcr"</span><span class="op">)</span></span></code></pre></div>
 <ul><li>Or, install the latest version from <a href="https://github.com/kassambara/fastqcr" class="external-link">GitHub</a>:</li></ul>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"kassambara/fastqcr"</span><span class="op">)</span></span></code></pre></div>
 <ul><li>Load fastqcr:</li></ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="http://www.sthda.com/english/rpkgs/fastqcr/" class="external-link">"fastqcr"</a></span><span class="op">)</span></span></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://rpkgs.datanovia.com/fastqcr/index.html" class="external-link">"fastqcr"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.sthda.com/english/rpkgs/fastqcr/" class="external-link">fastqcr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/fastqcr/index.html" class="external-link">fastqcr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Aggregating Multiple FastQC Reports into a Data Frame </span></span>
 <span><span class="co">#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span>
@@ -201,7 +201,7 @@
 <div class="section level2">
 <h2 id="running-fastqc-from-r">Running FastQC from R<a class="anchor" aria-label="anchor" href="#running-fastqc-from-r"></a>
 </h2>
-<p>The supported <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/2%20Basic%20Operations/2.1%20Opening%20a%20sequence%20file.html" class="external-link">file formats</a> by FastQC include:</p>
+<p>The supported <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/2%20Basic%20Operations/2.1%20Opening%20a%20sequence%20file.html" class="external-link">file formats</a> by FastQC include:</p>
 <ul>
 <li>FASTQ</li>
 <li>gzip compressed FASTQ</li>
@@ -237,7 +237,7 @@
 <li>Adapter Content</li>
 <li>Kmer content</li>
 </ul>
-<p>The interpretation of these modules are provided in the official documentation of the <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/" class="external-link">FastQC tool</a>.</p>
+<p>The interpretation of these modules are provided in the official documentation of the <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/" class="external-link">FastQC tool</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="aggregating-reports">Aggregating Reports<a class="anchor" aria-label="anchor" href="#aggregating-reports"></a>
@@ -245,11 +245,11 @@
 <p>Here, we provide an R function <strong>qc_aggregate()</strong> to walk the FastQC result directory, find all the FASTQC zipped output folders, read the <strong>fastqc_data.txt</strong> and the <strong>summary.txt</strong> files, and aggregate the information into a data frame.</p>
 <p>In the example below, we’ll use a demo FastQC output directory available in the fastqcr package.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.sthda.com/english/rpkgs/fastqcr/" class="external-link">fastqcr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/fastqcr/index.html" class="external-link">fastqcr</a></span><span class="op">)</span></span>
 <span><span class="co"># Demo QC dir</span></span>
 <span><span class="va">qc.dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"fastqc_results"</span>, package <span class="op">=</span> <span class="st">"fastqcr"</span><span class="op">)</span></span>
 <span><span class="va">qc.dir</span></span>
-<span><span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"</span></span>
+<span><span class="co"># [1] "/Users/kassambara/Library/R/3.6/library/fastqcr/fastqc_results"</span></span>
 <span>   </span>
 <span><span class="co"># List of files in the directory</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">qc.dir</span><span class="op">)</span></span>
@@ -273,71 +273,35 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">S3</td>
-<td align="left">Per base sequence content</td>
-<td align="left">FAIL</td>
-<td align="left">67255341</td>
-<td align="left">35-76</td>
-<td align="right">49</td>
-<td align="right">22.14</td>
-</tr>
-<tr class="even">
-<td align="left">S5</td>
-<td align="left">Per sequence GC content</td>
-<td align="left">WARN</td>
-<td align="left">65011962</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">18.15</td>
-</tr>
-<tr class="odd">
-<td align="left">S3</td>
-<td align="left">Overrepresented sequences</td>
-<td align="left">PASS</td>
-<td align="left">67255341</td>
-<td align="left">35-76</td>
-<td align="right">49</td>
-<td align="right">22.14</td>
-</tr>
-<tr class="even">
-<td align="left">S3</td>
+<td align="left">S2</td>
 <td align="left">Per tile sequence quality</td>
 <td align="left">PASS</td>
-<td align="left">67255341</td>
+<td align="left">50299587</td>
 <td align="left">35-76</td>
-<td align="right">49</td>
-<td align="right">22.14</td>
+<td align="right">48</td>
+<td align="right">15.70</td>
+</tr>
+<tr class="even">
+<td align="left">S1</td>
+<td align="left">Sequence Length Distribution</td>
+<td align="left">WARN</td>
+<td align="left">50299587</td>
+<td align="left">35-76</td>
+<td align="right">48</td>
+<td align="right">17.24</td>
 </tr>
 <tr class="odd">
-<td align="left">S4</td>
+<td align="left">S3</td>
 <td align="left">Per sequence quality scores</td>
 <td align="left">PASS</td>
 <td align="left">67255341</td>
 <td align="left">35-76</td>
 <td align="right">49</td>
-<td align="right">19.89</td>
-</tr>
-<tr class="even">
-<td align="left">S1</td>
-<td align="left">Per sequence GC content</td>
-<td align="left">WARN</td>
-<td align="left">50299587</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">17.24</td>
-</tr>
-<tr class="odd">
-<td align="left">S5</td>
-<td align="left">Kmer Content</td>
-<td align="left">PASS</td>
-<td align="left">65011962</td>
-<td align="left">35-76</td>
-<td align="right">48</td>
-<td align="right">18.15</td>
+<td align="right">22.14</td>
 </tr>
 <tr class="even">
 <td align="left">S3</td>
-<td align="left">Sequence Duplication Levels</td>
+<td align="left">Per base sequence quality</td>
 <td align="left">PASS</td>
 <td align="left">67255341</td>
 <td align="left">35-76</td>
@@ -345,8 +309,26 @@
 <td align="right">22.14</td>
 </tr>
 <tr class="odd">
+<td align="left">S2</td>
+<td align="left">Per sequence GC content</td>
+<td align="left">WARN</td>
+<td align="left">50299587</td>
+<td align="left">35-76</td>
+<td align="right">48</td>
+<td align="right">15.70</td>
+</tr>
+<tr class="even">
+<td align="left">S5</td>
+<td align="left">Sequence Duplication Levels</td>
+<td align="left">PASS</td>
+<td align="left">65011962</td>
+<td align="left">35-76</td>
+<td align="right">48</td>
+<td align="right">18.15</td>
+</tr>
+<tr class="odd">
 <td align="left">S1</td>
-<td align="left">Basic Statistics</td>
+<td align="left">Per base N content</td>
 <td align="left">PASS</td>
 <td align="left">50299587</td>
 <td align="left">35-76</td>
@@ -354,9 +336,27 @@
 <td align="right">17.24</td>
 </tr>
 <tr class="even">
-<td align="left">S1</td>
-<td align="left">Overrepresented sequences</td>
+<td align="left">S5</td>
+<td align="left">Basic Statistics</td>
 <td align="left">PASS</td>
+<td align="left">65011962</td>
+<td align="left">35-76</td>
+<td align="right">48</td>
+<td align="right">18.15</td>
+</tr>
+<tr class="odd">
+<td align="left">S2</td>
+<td align="left">Per sequence quality scores</td>
+<td align="left">PASS</td>
+<td align="left">50299587</td>
+<td align="left">35-76</td>
+<td align="right">48</td>
+<td align="right">15.70</td>
+</tr>
+<tr class="even">
+<td align="left">S1</td>
+<td align="left">Per base sequence content</td>
+<td align="left">FAIL</td>
 <td align="left">50299587</td>
 <td align="left">35-76</td>
 <td align="right">48</td>
@@ -381,7 +381,10 @@
 <li>
 <strong>pct.dup</strong>: percentage of duplicate reads</li>
 </ul>
+<div class="block">
+<p></p>
 <p>The table shows, for each sample, the names of tested FastQC modules, the status of the test, as well as, some general statistics including the number of reads, the length of reads, the percentage of GC content and the percentage of duplicate reads.</p>
+</div>
 <p>Once you have the aggregated data you can use the <strong>dplyr</strong> package to easily inspect modules that failed or warned in samples. For example, the following R code shows samples with warnings and/or failures:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -389,7 +392,7 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">sample</span>, <span class="va">module</span>, <span class="va">status</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>    </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">status</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WARN"</span>, <span class="st">"FAIL"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">sample</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 15 x 3</span></span>
+<span><span class="co"># # A tibble: 15 × 3</span></span>
 <span><span class="co">#    sample module                       status</span></span>
 <span><span class="co">#    &lt;chr&gt;  &lt;chr&gt;                        &lt;chr&gt; </span></span>
 <span><span class="co">#  1 S1     Per base sequence content    FAIL  </span></span>
@@ -407,7 +410,10 @@
 <span><span class="co"># 13 S5     Per base sequence content    FAIL  </span></span>
 <span><span class="co"># 14 S5     Per sequence GC content      WARN  </span></span>
 <span><span class="co"># 15 S5     Sequence Length Distribution WARN</span></span></code></pre></div>
+<div class="success">
+<p></p>
 <p>In the next section, we’ll describe some easy-to-use functions, available in the <strong>fastqcr</strong> package, for analyzing the aggregated data.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="summarizing-reports">Summarizing Reports<a class="anchor" aria-label="anchor" href="#summarizing-reports"></a>
@@ -417,28 +423,29 @@
 <h3 id="qc-summary">QC Summary<a class="anchor" aria-label="anchor" href="#qc-summary"></a>
 </h3>
 <ul>
-<li>R function: <strong>summary</strong>()</li>
+<li>R function: <strong>summary</strong>()<br>
+</li>
 <li>Input data: aggregated data from <strong>qc_aggregate</strong>()</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Summary of qc</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">qc</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 12 x 7</span></span>
-<span><span class="co"># # Groups:   module [?]</span></span>
-<span><span class="co">#    module         nb_samples nb_fail nb_pass nb_warn failed     warned    </span></span>
-<span><span class="co">#    &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     </span></span>
-<span><span class="co">#  1 Adapter Conte…          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co">#  2 Basic Statist…          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co">#  3 Kmer Content            5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co">#  4 Overrepresent…          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co">#  5 Per base N co…          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co">#  6 Per base sequ…          5       5       0       0 S1, S2, S… &lt;NA&gt;      </span></span>
-<span><span class="co">#  7 Per base sequ…          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co">#  8 Per sequence …          5       2       0       3 S3, S4     S1, S2, S5</span></span>
-<span><span class="co">#  9 Per sequence …          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co"># 10 Per tile sequ…          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co"># 11 Sequence Dupl…          5       0       5       0 &lt;NA&gt;       &lt;NA&gt;      </span></span>
-<span><span class="co"># 12 Sequence Leng…          5       0       0       5 &lt;NA&gt;       S1, S2, S…</span></span></code></pre></div>
+<span><span class="co"># # A tibble: 12 × 7</span></span>
+<span><span class="co"># # Groups:   module [12]</span></span>
+<span><span class="co">#    module                       nb_samples nb_fail nb_pass nb_warn failed warned</span></span>
+<span><span class="co">#    &lt;chr&gt;                             &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; </span></span>
+<span><span class="co">#  1 Adapter Content                       5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co">#  2 Basic Statistics                      5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co">#  3 Kmer Content                          5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co">#  4 Overrepresented sequences             5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co">#  5 Per base N content                    5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co">#  6 Per base sequence content             5       5       0       0 S1, S… &lt;NA&gt;  </span></span>
+<span><span class="co">#  7 Per base sequence quality             5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co">#  8 Per sequence GC content               5       2       0       3 S3, S4 S1, S…</span></span>
+<span><span class="co">#  9 Per sequence quality scores           5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co"># 10 Per tile sequence quality             5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co"># 11 Sequence Duplication Levels           5       0       5       0 &lt;NA&gt;   &lt;NA&gt;  </span></span>
+<span><span class="co"># 12 Sequence Length Distribution          5       0       0       5 &lt;NA&gt;   S1, S…</span></span></code></pre></div>
 <p>Column names:</p>
 <ul>
 <li>
@@ -450,7 +457,10 @@
 <li>
 <em>failed, warned</em>: the name of samples that failed and warned, respectively.</li>
 </ul>
+<div class="block">
+<p></p>
 <p>The table shows, for each FastQC module, the number and the name of samples that failed or warned.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="general-statistics">General statistics<a class="anchor" aria-label="anchor" href="#general-statistics"></a>
@@ -459,9 +469,9 @@
 <li>R function: <strong>qc_stats</strong>()</li>
 <li>Input data: aggregated data from <strong>qc_aggregate</strong>()</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/qc_aggregate.html">qc_stats</a></span><span class="op">(</span><span class="va">qc</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 5 x 5</span></span>
+<span><span class="co"># # A tibble: 5 × 5</span></span>
 <span><span class="co">#   sample pct.dup pct.gc tot.seq  seq.length</span></span>
 <span><span class="co">#   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
 <span><span class="co"># 1 S1        17.2     48 50299587 35-76     </span></span>
@@ -480,7 +490,10 @@
 <li>
 <em>seq.length</em>: sequence length or the length of reads.</li>
 </ul>
+<div class="block">
+<p></p>
 <p>The table shows, for each sample, some general statistics such as the total number of reads, the length of reads, the percentage of GC content and the percentage of duplicate reads</p>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -518,31 +531,34 @@
 </h3>
 <ul><li>
 <strong>Modules that failed in the most samples</strong>:</li></ul>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># See which module failed in the most samples</span></span>
 <span><span class="fu"><a href="reference/qc_problems.html">qc_fails</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"module"</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 2 x 3</span></span>
+<span><span class="co"># # A tibble: 2 × 3</span></span>
 <span><span class="co">#   module                    nb_problems sample            </span></span>
 <span><span class="co">#   &lt;chr&gt;                           &lt;int&gt; &lt;chr&gt;             </span></span>
 <span><span class="co"># 1 Per base sequence content           5 S1, S2, S3, S4, S5</span></span>
 <span><span class="co"># 2 Per sequence GC content             2 S3, S4</span></span></code></pre></div>
+<div class="success">
+<p></p>
 <p>For each module, the number of problems (failures) and the name of samples, that failed, are shown.</p>
+</div>
 <ul><li>
 <strong>Modules that warned in the most samples</strong>:</li></ul>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># See which module warned in the most samples</span></span>
 <span><span class="fu"><a href="reference/qc_problems.html">qc_warns</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"module"</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 2 x 3</span></span>
+<span><span class="co"># # A tibble: 2 × 3</span></span>
 <span><span class="co">#   module                       nb_problems sample            </span></span>
 <span><span class="co">#   &lt;chr&gt;                              &lt;int&gt; &lt;chr&gt;             </span></span>
 <span><span class="co"># 1 Sequence Length Distribution           5 S1, S2, S3, S4, S5</span></span>
 <span><span class="co"># 2 Per sequence GC content                3 S1, S2, S5</span></span></code></pre></div>
 <ul><li>
 <strong>Modules that failed or warned</strong>: Union of qc_fails() and qc_warns()</li></ul>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># See which modules failed or warned.</span></span>
 <span><span class="fu"><a href="reference/qc_problems.html">qc_problems</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"module"</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 3 x 3</span></span>
+<span><span class="co"># # A tibble: 3 × 3</span></span>
 <span><span class="co">#   module                       nb_problems sample            </span></span>
 <span><span class="co">#   &lt;chr&gt;                              &lt;int&gt; &lt;chr&gt;             </span></span>
 <span><span class="co"># 1 Per base sequence content              5 S1, S2, S3, S4, S5</span></span>
@@ -551,7 +567,7 @@
 <p>The output above is in a compact format. For a stretched format, type this:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/qc_problems.html">qc_problems</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"module"</span>, compact <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 15 x 4</span></span>
+<span><span class="co"># # A tibble: 15 × 4</span></span>
 <span><span class="co">#    module                       nb_problems sample status</span></span>
 <span><span class="co">#    &lt;chr&gt;                              &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; </span></span>
 <span><span class="co">#  1 Per base sequence content              5 S1     FAIL  </span></span>
@@ -569,11 +585,14 @@
 <span><span class="co"># 13 Sequence Length Distribution           5 S3     WARN  </span></span>
 <span><span class="co"># 14 Sequence Length Distribution           5 S4     WARN  </span></span>
 <span><span class="co"># 15 Sequence Length Distribution           5 S5     WARN</span></span></code></pre></div>
+<div class="success">
+<p></p>
 <p>In the the stretched format each row correspond to a unique sample. Additionally, the status of each module is specified.</p>
+</div>
 <p>It’s also possible to display problems for one or more specified modules. For example,</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/qc_problems.html">qc_problems</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"module"</span>,  name <span class="op">=</span> <span class="st">"Per sequence GC content"</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 5 x 4</span></span>
+<span><span class="co"># # A tibble: 5 × 4</span></span>
 <span><span class="co">#   module                  nb_problems sample status</span></span>
 <span><span class="co">#   &lt;chr&gt;                         &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; </span></span>
 <span><span class="co"># 1 Per sequence GC content           5 S3     FAIL  </span></span>
@@ -581,7 +600,10 @@
 <span><span class="co"># 3 Per sequence GC content           5 S1     WARN  </span></span>
 <span><span class="co"># 4 Per sequence GC content           5 S2     WARN  </span></span>
 <span><span class="co"># 5 Per sequence GC content           5 S5     WARN</span></span></code></pre></div>
+<div class="warning">
+<p></p>
 <p>Note that, partial matching of name is allowed. For example, name = “Per sequence GC content” equates to name = “GC content”.</p>
+</div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/qc_problems.html">qc_problems</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"module"</span>,  name <span class="op">=</span> <span class="st">"GC content"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -589,10 +611,10 @@
 <h3 id="per-sample-problems">Per Sample Problems<a class="anchor" aria-label="anchor" href="#per-sample-problems"></a>
 </h3>
 <ul><li><strong>Samples with one or more failed modules</strong></li></ul>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># See which samples had one or more failed modules</span></span>
 <span><span class="fu"><a href="reference/qc_problems.html">qc_fails</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"sample"</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 5 x 3</span></span>
+<span><span class="co"># # A tibble: 5 × 3</span></span>
 <span><span class="co">#   sample nb_problems module                                            </span></span>
 <span><span class="co">#   &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;                                             </span></span>
 <span><span class="co"># 1 S3               2 Per base sequence content, Per sequence GC content</span></span>
@@ -600,13 +622,16 @@
 <span><span class="co"># 3 S1               1 Per base sequence content                         </span></span>
 <span><span class="co"># 4 S2               1 Per base sequence content                         </span></span>
 <span><span class="co"># 5 S5               1 Per base sequence content</span></span></code></pre></div>
+<div class="success">
+<p></p>
 <p>For each sample, the number of problems (failures) and the name of modules, that failed, are shown.</p>
+</div>
 <ul><li>
 <strong>Samples with failed or warned modules</strong>:</li></ul>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># See which samples had one or more module with failure or warning</span></span>
 <span><span class="fu"><a href="reference/qc_problems.html">qc_problems</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"sample"</span>, compact <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 15 x 4</span></span>
+<span><span class="co"># # A tibble: 15 × 4</span></span>
 <span><span class="co">#    sample nb_problems module                       status</span></span>
 <span><span class="co">#    &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;                        &lt;chr&gt; </span></span>
 <span><span class="co">#  1 S1               3 Per base sequence content    FAIL  </span></span>
@@ -627,7 +652,7 @@
 <p>To specify the name of a sample of interest, type this:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/qc_problems.html">qc_problems</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"sample"</span>, name <span class="op">=</span> <span class="st">"S1"</span><span class="op">)</span></span>
-<span><span class="co"># # A tibble: 3 x 4</span></span>
+<span><span class="co"># # A tibble: 3 × 4</span></span>
 <span><span class="co">#   sample nb_problems module                       status</span></span>
 <span><span class="co">#   &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;                        &lt;chr&gt; </span></span>
 <span><span class="co"># 1 S1               3 Per base sequence content    FAIL  </span></span>
@@ -648,12 +673,15 @@
 <code class="sourceCode R"><span><span class="co"># Demo QC Directory</span></span>
 <span><span class="va">qc.dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"fastqc_results"</span>, package <span class="op">=</span> <span class="st">"fastqcr"</span><span class="op">)</span></span>
 <span><span class="va">qc.dir</span></span>
-<span><span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results"</span></span></code></pre></div>
+<span><span class="co"># [1] "/Users/kassambara/Library/R/3.6/library/fastqcr/fastqc_results"</span></span></code></pre></div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Build a report</span></span>
 <span><span class="fu"><a href="reference/qc_report.html">qc_report</a></span><span class="op">(</span><span class="va">qc.dir</span>, result.file <span class="op">=</span> <span class="st">"~/Desktop/multi-qc-result"</span>,</span>
 <span>          experiment <span class="op">=</span> <span class="st">"Exome sequencing of colon cancer cell lines"</span><span class="op">)</span></span></code></pre></div>
-<p>An example of report is available at: &lt;a href= “<a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html" class="external-link uri">http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html</a>”, target = "_blank"&gt; fastqcr multi-qc report</p>
+<div class="success">
+<p></p>
+<p>An example of report is available at: &lt;a href= “<a href="https://rpkgs.datanovia.com/fastqcr/qc-reports/fastqcr-multi-qc-report.html" class="external-link uri">https://rpkgs.datanovia.com/fastqcr/qc-reports/fastqcr-multi-qc-report.html</a>”, target = “_blank”&gt; fastqcr multi-qc report</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="create-a-one-sample-report">Create a One-Sample Report<a class="anchor" aria-label="anchor" href="#create-a-one-sample-report"></a>
@@ -662,19 +690,25 @@
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="va">qc.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"fastqc_results"</span>, <span class="st">"S1_fastqc.zip"</span>, package <span class="op">=</span> <span class="st">"fastqcr"</span><span class="op">)</span></span>
 <span><span class="va">qc.file</span></span>
-<span><span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"</span></span></code></pre></div>
+<span><span class="co"># [1] "/Users/kassambara/Library/R/3.6/library/fastqcr/fastqc_results/S1_fastqc.zip"</span></span></code></pre></div>
 <ul><li>
 <strong>One-Sample QC report with plot interpretations</strong>:</li></ul>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu"><a href="reference/qc_report.html">qc_report</a></span><span class="op">(</span><span class="va">qc.file</span>, result.file <span class="op">=</span> <span class="st">"one-sample-report-with-interpretation"</span>,</span>
 <span>   interpret <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>An example of report is available at: &lt;a href= “<a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html" class="external-link uri">http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html</a>”, target = "_blank"&gt; One sample QC report with interpretation</p>
+<div class="success">
+<p></p>
+<p>An example of report is available at: &lt;a href= “<a href="https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-interpretation.html" class="external-link uri">https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-interpretation.html</a>”, target = “_blank”&gt; One sample QC report with interpretation</p>
+</div>
 <ul><li>
 <strong>One-Sample QC report without plot interpretations</strong>:</li></ul>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu"><a href="reference/qc_report.html">qc_report</a></span><span class="op">(</span><span class="va">qc.file</span>, result.file <span class="op">=</span> <span class="st">"one-sample-report"</span>,</span>
 <span>   interpret <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p>An example of report is available at: &lt;a href= “<a href="http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html" class="external-link uri">http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html</a>”, target = "_blank"&gt; One sample QC report without interpretation</p>
+<div class="success">
+<p></p>
+<p>An example of report is available at: &lt;a href= “<a href="https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-without-interpretation.html" class="external-link uri">https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-without-interpretation.html</a>”, target = “_blank”&gt; One sample QC report without interpretation</p>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -685,7 +719,7 @@
 <code class="sourceCode R"><span><span class="co"># Demo file</span></span>
 <span><span class="va">qc.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"fastqc_results"</span>, <span class="st">"S1_fastqc.zip"</span>,  package <span class="op">=</span> <span class="st">"fastqcr"</span><span class="op">)</span></span>
 <span><span class="va">qc.file</span></span>
-<span><span class="co"># [1] "/Library/Frameworks/R.framework/Versions/3.3/Resources/library/fastqcr/fastqc_results/S1_fastqc.zip"</span></span></code></pre></div>
+<span><span class="co"># [1] "/Users/kassambara/Library/R/3.6/library/fastqcr/fastqc_results/S1_fastqc.zip"</span></span></code></pre></div>
 <p>We start by reading the output using the function <strong>qc_read</strong>(), which returns a list of tibbles containing the data for specified modules:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Read all modules</span></span>
@@ -713,7 +747,7 @@
 <li>“Overrepresented sequences”,</li>
 <li>“Adapter Content”</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/qc_plot.html">qc_plot</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"Per sequence GC content"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/qc_plot.html">qc_plot</a></span><span class="op">(</span><span class="va">qc</span>, <span class="st">"Per base sequence quality"</span><span class="op">)</span></span>
@@ -729,11 +763,11 @@
 <h2 id="useful-links">Useful Links<a class="anchor" aria-label="anchor" href="#useful-links"></a>
 </h2>
 <ul>
-<li>FastQC report for a <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html" class="external-link">good Illumina dataset</a>
+<li>FastQC report for a <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html" class="external-link">good Illumina dataset</a>
 </li>
-<li>FastQC report for a <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html" class="external-link">bad Illumina dataset</a>
+<li>FastQC report for a <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html" class="external-link">bad Illumina dataset</a>
 </li>
-<li><a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/" class="external-link">Online documentation for each FastQC report</a></li>
+<li><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/" class="external-link">Online documentation for each FastQC report</a></li>
 </ul>
 </div>
 </div>

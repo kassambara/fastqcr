@@ -41,13 +41,13 @@ If you have hundreds of samples, you’re not going to open up each HTML page. Y
    
 The **fastqcr** R package provides helper functions to easily and automatically parse, aggregate and analyze FastQC reports for large numbers of samples.
    
-Additionally, the **fastqcr** package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: http://www.sthda.com/english/rpkgs/fastqcr/.
+Additionally, the **fastqcr** package provides a convenient solution for building a multi-QC report and a one-sample FastQC report with the result interpretations. The online documentation is available at: https://rpkgs.datanovia.com/fastqcr/.
     
 Examples of QC reports, generated automatically by the **fastqcr** R package, include:   
     
-- [Multi-QC report for multiple samples](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html)
-- [One sample QC report (+ interpretation)](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html)
-- [One sample QC report (no interpretation)](http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html)
+- [Multi-QC report for multiple samples](https://rpkgs.datanovia.com/fastqcr/qc-reports/fastqcr-multi-qc-report.html)
+- [One sample QC report (+ interpretation)](https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-interpretation.html)
+- [One sample QC report (no interpretation)](https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-without-interpretation.html)
     
     
 ![fastqcr logo](tools/fastqcr.png)
@@ -183,7 +183,7 @@ fastqc_install()
     
 ## Running FastQC from R
    
-The supported [file formats](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/2%20Basic%20Operations/2.1%20Opening%20a%20sequence%20file.html) by FastQC include:   
+The supported [file formats](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/2%20Basic%20Operations/2.1%20Opening%20a%20sequence%20file.html) by FastQC include:   
    
 - FASTQ
 - gzip compressed FASTQ
@@ -230,7 +230,7 @@ These modules include:
 - Adapter Content
 - Kmer content
     
-The interpretation of these modules are provided in the official documentation of the [FastQC tool](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/).
+The interpretation of these modules are provided in the official documentation of the [FastQC tool](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/).
     
    
 ## Aggregating Reports
@@ -528,7 +528,7 @@ qc_report(qc.dir, result.file = "~/Desktop/multi-qc-result",
     
 
 ```{block, type = "success"}
-An example of report is available at: <a href= "http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/fastqcr-multi-qc-report.html", target = "_blank"> fastqcr multi-qc report</a>
+An example of report is available at: <a href= "https://rpkgs.datanovia.com/fastqcr/qc-reports/fastqcr-multi-qc-report.html", target = "_blank"> fastqcr multi-qc report</a>
 ```
     
     
@@ -553,7 +553,7 @@ qc.file
      
 
 ```{block, type = "success"}
-An example of report is available at: <a href= "http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-interpretation.html", target = "_blank"> One sample QC report with interpretation</a>
+An example of report is available at: <a href= "https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-interpretation.html", target = "_blank"> One sample QC report with interpretation</a>
 ```
    
     
@@ -567,7 +567,7 @@ An example of report is available at: <a href= "http://www.sthda.com/english/rpk
      
 
 ```{block, type = "success"}
-An example of report is available at: <a href= "http://www.sthda.com/english/rpkgs/fastqcr/qc-reports/sample-qc-report-without-interpretation.html", target = "_blank"> One sample QC report without interpretation</a>
+An example of report is available at: <a href= "https://rpkgs.datanovia.com/fastqcr/qc-reports/sample-qc-report-without-interpretation.html", target = "_blank"> One sample QC report without interpretation</a>
 ```
    
    
@@ -628,8 +628,8 @@ qc_plot(qc, "Sequence duplication levels")
      
 ## Useful Links
    
-- FastQC report for a [good Illumina dataset](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html)
-- FastQC report for a [bad Illumina dataset](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
-- [Online documentation for each FastQC report](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/)
+- FastQC report for a [good Illumina dataset](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html)
+- FastQC report for a [bad Illumina dataset](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
+- [Online documentation for each FastQC report](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/)
      
    

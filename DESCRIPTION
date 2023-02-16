@@ -36,7 +36,7 @@ Imports:
     rlang
 Suggests:
     knitr
-URL: http://www.sthda.com/english/rpkgs/fastqcr/
+URL: https://rpkgs.datanovia.com/fastqcr/index.html
 BugReports: https://github.com/kassambara/fastqcr/issues
 RoxygenNote: 7.2.3
 Collate: 
