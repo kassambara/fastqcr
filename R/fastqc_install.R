@@ -12,14 +12,14 @@ fastqc_install <- function(url, dest.dir = "~/bin"){
   if(missing(url)){
     . <- NULL
     # Get the latest version of fastq
-    download_page <- xml2::read_html("http://www.bioinformatics.babraham.ac.uk/projects/download.html")
+    download_page <- xml2::read_html("https://www.bioinformatics.babraham.ac.uk/projects/download.html")
     link_hrefs <- download_page %>%
       rvest::html_nodes("a") %>%
       rvest::html_attr("href")
     fastqc_href <- grep("fastqc/fastqc.*.zip",
                         link_hrefs, perl = TRUE) %>%
       link_hrefs[.] %>% .[1]
-    url <- paste0("http://www.bioinformatics.babraham.ac.uk/projects/",
+    url <- paste0("https://www.bioinformatics.babraham.ac.uk/projects/",
                  fastqc_href)
   }
   .remove(file.path(dest.dir, "FastQC")) # remove old version if exists

@@ -9,7 +9,7 @@ fastqc_install(url, dest.dir = "~/bin")
 \arguments{
 \item{url}{url to download the latest version. If missing, the function will
 try to install the latest version from
-\href{http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc}{http://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc}.}
+\href{https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc}{https://www.bioinformatics.babraham.ac.uk/projects/download.html#fastqc}.}
 
 \item{dest.dir}{destination directory to install the tool.}
 }
