@@ -1,15 +1,15 @@
-# fastqcr 0.1.2.999
+# fastqcr 0.1.3
 
-## Major changes
    
 ## Minor changes
 
 - Using `select()` in place of the deprecated `select_()` function in `qc_aggregate()` and `qc_problems()` (#24)
 - Using `arrange()` and `group_by()` in place of the deprecated `arrange_()` and `group_by()_` functions in `qc_problems()`
+- Changing http to https for urls concerning fastc installation and documentation
 
 ## Bug fixes
 
-- Remove extra args in `left_join()` from `qc_aggregate()` function (#23)
+- Remove extra args (`fill`) in `left_join()` from `qc_aggregate()` function (#23)
 
 # fastqcr 0.1.2
 
