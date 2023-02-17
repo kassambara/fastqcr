@@ -37,10 +37,11 @@ Plot FastQC data of multiple samples
 }
 \examples{
 qc.dir <- system.file("fastqc_results", package = "fastqcr")
-qc.files <- list.files(qc.dir, full.names = TRUE)
+qc.files <- list.files(qc.dir, full.names = TRUE)[1:3]
+nb_samples <- length(qc.files)
 
 # read all modules in all files
-qc <- qc_read_collection(qc.files, sample_names = paste('S', 1:5, sep = ''))
+qc <- qc_read_collection(qc.files, sample_names = paste('S', 1:nb_samples, sep = ''))
 
 # Plot per sequence GC content
 qc_plot_collection(qc, "Per sequence GC content")

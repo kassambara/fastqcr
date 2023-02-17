@@ -43,15 +43,16 @@ A wrapper function around \link{qc_read} to read multiple FastQC data files at o
 \examples{
 # extract paths to the demo files
 qc.dir <- system.file("fastqc_results", package = "fastqcr")
-qc.files <- list.files(qc.dir, full.names = TRUE)
+qc.files <- list.files(qc.dir, full.names = TRUE)[1:3]
+nb_samples <- length(qc.files)
 
 # read all modules in all files
-qc <- qc_read_collection(qc.files, sample_names = paste('S', 1:5, sep = ''))
+qc <- qc_read_collection(qc.files, sample_names = paste('S', 1:nb_samples, sep = ''))
 
 
 # read a specified module in all files
 qc <- qc_read_collection(qc.files, 
-    sample_names = paste('S', 1:5, sep = ''),
+    sample_names = paste('S', 1:nb_samples, sep = ''),
     modules = "Per base sequence quality")
 
 }
