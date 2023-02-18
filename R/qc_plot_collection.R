@@ -28,26 +28,28 @@ NULL
 #' @examples
 # extract paths to the demo files
 #' qc.dir <- system.file("fastqc_results", package = "fastqcr")
-#' qc.files <- list.files(qc.dir, full.names = TRUE)[1:3]
+#' qc.files <- list.files(qc.dir, full.names = TRUE)[1:2]
 #' nb_samples <- length(qc.files)
 #' 
-#' # read all modules in all files
-#' qc <- qc_read_collection(qc.files, sample_names = paste('S', 1:nb_samples, sep = ''))
+#' # read specific modules in all files
+#' # To read all modules, specify: modules = "all"
+#' modules <- c(
+#'   "Per sequence GC content",
+#'   "Per base sequence quality",
+#'  "Per sequence quality scores"
+#' )
+#' qc <- qc_read_collection(qc.files, sample_names = paste('S', 1:nb_samples, sep = ''),
+#'        modules = modules)
 #'
 #' # Plot per sequence GC content
 #' qc_plot_collection(qc, "Per sequence GC content")
 #'
 #' # Per base sequence quality
 #' qc_plot_collection(qc, "Per base sequence quality")
-#'
+#' 
 #' # Per sequence quality scores
 #' qc_plot_collection(qc, "Per sequence quality scores")
 #'
-#' # Per base sequence content
-#' qc_plot_collection(qc, "Per base sequence content")
-#'
-#' # Sequence duplication levels
-#' qc_plot_collection(qc, "Sequence duplication levels")
 #'
 #' @export
 qc_plot_collection <- function(qc, modules = "all"){
