@@ -68,20 +68,31 @@ qc_plot <- function(qc, modules = "all"){
     stop("data should be an object of class qc_read")
 
   . <- NULL
-  modules <- .valid_fastqc_modules(modules) %>%
+  modules.to.plot <- .valid_fastqc_modules(modules) %>%
+    intersect(qc$summary$module) %>% #Only select those that has summary stats on the fastqc summary.
     tolower() %>%
-    gsub(" ", "_", .)
+    gsub(" ", "_", .) %>%
+    setdiff('per_tile_sequence_quality') #per-tile QC not implemented yet
+  
+  # qc$summary$modules will never include "summary".
+  # This is to add "summary" back as the first plot if modules is set to "all" or 'summary'.
+  if ( 
+    any(
+      (grep(paste(modules, collapse='|'), 'all', ignore.case=TRUE) > 0),
+      (grep(paste(modules, collapse='|'), 'summary', ignore.case=TRUE) > 0))) {
+    modules.to.plot <- c('summary', modules.to.plot)
+  }
 
-   res <- lapply(modules,
-                function(module, qc){
-                  plot.func <- .plot_funct(module)
-                  status <- .get_status(qc, gsub("_", " ", module))
+   res <- lapply(modules.to.plot,
+                function(one.module, qc){
+                  plot.func <- .plot_funct(one.module)
+                  status <- .get_status(qc, gsub("_", " ", one.module))
                   plot.func(qc, status = status)
                 },
                 qc
   )
 
-  names(res) <- modules
+  names(res) <- modules.to.plot
   if(length(res) == 1) res[[1]]
   else res
 }
